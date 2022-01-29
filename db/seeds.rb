@@ -18,9 +18,27 @@ first_channel = Channel.create!(
   user_list: '[1]'
 )
 
+second_channel = Channel.create!(
+  name: "second channel",
+  description: "this is second channel in Jia's slack clone",
+  private: 0,
+  user_id: jia.id,
+  user_list: '[1]'
+)
+
 Chat.destroy_all
 Chat.create!(
   msg: "Hello, slack-clone! this is jia's first message",
   user_id: jia.id,
   channel_id: first_channel.id
+)
+Chat.create!(
+  msg: "Hello",
+  user_id: jia.id,
+  channel_id: first_channel.id
+)
+Chat.create!(
+  msg: "Hellooooooo",
+  user_id: jia.id,
+  channel_id: second_channel.id
 )

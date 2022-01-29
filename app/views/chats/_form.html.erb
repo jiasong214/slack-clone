@@ -1,0 +1,8 @@
+<div class="chats__form-container">
+  <%= form_with model: @new_chat, class: "chats__form", local: true do |f| %>
+    <%= f.text_field :msg %>
+    <%= f.hidden_field :channel_id, value: @channel.id %>
+    <%= f.hidden_field :user_id, value: $current_user.id %>
+    <%= f.submit %>
+  <% end %>
+</div>

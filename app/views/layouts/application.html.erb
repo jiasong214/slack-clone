@@ -8,15 +8,14 @@
     <%= javascript_include_tag 'application' %>
   </head>
 <body>
-
-  <!-- header on top -->
+   <!-- header on top -->
   <header>
     <div></div>
     <form action="" class="header__searchForm">
       <input type="text" placeholder="Search blabla" >
     </form>
     <div class="header__profile">
-      <img src="" alt="">
+      <img src="<%= $current_user.image %>" alt="user profile">
     </div>
   </header>
 
@@ -30,10 +29,14 @@
         <details open class="workplace__sidebar__channels">
           <summary>Channels</summary>
           <ul>
-            <li>
-              <i>icon</i>
-              <span>Example Channels</span>
-            </li>
+            <% $all_channels.each do |c| %>
+              <li class="<%= params[:channel_id].to_i == c.id ? "active" : "" %>">
+                <a href="/chats?channel_id=<%= c.id %>">
+                  <i> <%= c.private ? "$" : "#" %> </i>
+                  <span> <%= c.name %> </span>
+                </a>
+              </li>
+            <% end %>
           </ul>
         </details>
         <details open class="workplace__sidebar__DMs">
@@ -52,7 +55,6 @@
     <main class="workplace__primaryView">
       <%= yield %>
     </main>
-
   </div>
 </body>
 </html>

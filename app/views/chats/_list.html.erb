@@ -1,0 +1,22 @@
+<div class="chats__list-container">
+  <ul class="chats__list">
+    <% @chats.each do |c| %>
+      <li>
+        <div class="img-container">
+          <img src="<%= $all_users.find(c.user_id).image %>" alt="" class="chats__list__item__profileImg">
+        </div>
+        <div class="text-container">
+          <div>
+            <p class="username"> <%= $all_users.find(c.user_id).username %> </p>
+            <span class="time"> <%= c.created_at %> </span>
+          </div>
+          <p class="msg"> <%= c.msg %> </p>
+        </div>
+        <div class="option-container">
+          <%= link_to "Edit", edit_chat_path(c.id) %>
+          <%= link_to 'Delete', chat_path(c.id), method: 'delete'%>
+        </div>
+      </li>
+    <% end %>
+  </ul>
+</div>
