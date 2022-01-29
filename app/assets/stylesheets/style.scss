@@ -1,0 +1,127 @@
+// basic setting
+
+:root {
+  --dark-purple: #350d36;
+  --main-purple: #3f0e40;
+  --light-purple: rgb(82, 38, 83);
+  --point-pink: #cd2553;
+  --point-blue: #1164a3;
+  --point-green: #2bac76;
+  --main-white: #ffffff;
+  --dark-white: #cfc3cf;
+}
+
+@import url("https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&display=swap");
+
+body * {
+  box-sizing: border-box;
+}
+
+body {
+  width: 100vw;
+  height: 100vh;
+  position: relative;
+  font-family: "Lato", sans-serif;
+  font-weight: 300;
+  letter-spacing: 0.3px;
+}
+
+header {
+  width: 100vw;
+  height: 38px;
+  background: var(--dark-purple);
+  display: grid;
+  grid-template-columns: 260px 1fr auto;
+  align-items: center;
+  position: fixed;
+  top: 0;
+  left: 0;
+
+  .header__searchForm input {
+    all: unset;
+    width: 100%;
+    max-width: 720px;
+    height: 24px;
+    padding: 0 10px;
+    background-color: rgba(255, 255, 255, 0.2);
+    border-radius: 5px;
+    font-size: 13px;
+    font-weight: 400;
+
+    &::placeholder {
+      color: white;
+      text-align: center;
+    }
+
+    &:focus {
+      background-color: white;
+    }
+  }
+
+  .header__profile {
+    width: 28px;
+    height: 28px;
+    margin: 0 16px;
+    border-radius: 5px;
+    background: gray;
+
+    img {
+      display: inline-block;
+      width: 100%;
+    }
+  }
+}
+
+.workplace {
+  width: 100vw;
+  height: calc(100vh - 38px);
+  display: grid;
+  grid-template-columns: 260px 1fr;
+  position: fixed;
+  top: 38px;
+  left: 0;
+
+  .workplace__sidebar {
+    height: 100%;
+    background: var(--main-purple);
+
+    h1,
+    summary,
+    li {
+      padding: 0 16px;
+    }
+
+    .workplace__sidebar__title {
+      height: 50px;
+      border-top: 1px solid var(--light-purple);
+      border-bottom: 1px solid var(--light-purple);
+      display: flex;
+      font-size: 18px;
+      color: white;
+      font-weight: 800;
+      align-items: center;
+    }
+
+    summary,
+    li {
+      padding-top: 10px;
+      padding-bottom: 10px;
+      font-size: 15px;
+      color: var(--dark-white);
+      cursor: pointer;
+    }
+
+    li {
+      padding-left: 30px;
+    }
+
+    li:hover {
+      background: var(--dark-purple);
+    }
+  }
+
+  .workplace__primaryView {
+    height: 100%;
+    background: var(--main-white);
+  }
+}
