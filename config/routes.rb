@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  root to: 'page#home'
+  root to: 'chats#index'
 
   resources :users
   resources :channels

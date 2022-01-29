@@ -26,7 +26,7 @@ class ChatsController < ApplicationController
     end
 
     # get chats that belongs to current channel
-    @chats = Chat.where("channel_id = #{$current_channel}")
+    @chats = Chat.order("created_at DESC").where("channel_id = #{$current_channel}")
 
     @chat = Chat.new
   end

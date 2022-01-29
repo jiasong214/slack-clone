@@ -1,2 +1,28 @@
-<h1>Users#show</h1>
-<p>Find me in app/views/users/show.html.erb</p>
+<section class="users">
+  <%= render partial: 'header', locals: {title: "Profile"} %>
+
+  <div class="profile">
+    <div class="img-container">
+      <img src="<%= @user.image %>" alt="">
+    </div>
+    <h2 class="username"><%= @user.username %></h2>
+    <a href="<%= edit_user_path @user.id %>" class="editBtn">
+      <img src="" alt="">
+      <span>Edit profile</span>
+    </a>
+    <div class="profile-innerbox">
+      <div>
+        <p>Display name</p>
+        <p class="displayName"><%= @user.username %></p>
+      </div>
+      <div>
+        <p>Local time</p>
+        <p>asdfsdf</p>
+      </div>
+      <div>
+        <p>Email address</p>
+        <p class="email"><%= @user.email %></p>
+      </div>
+    </div>
+  </div>
+</section>
