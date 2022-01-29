@@ -1,2 +1,26 @@
-<h1>Channels#index</h1>
-<p>Find me in app/views/channels/index.html.erb</p>
+<section class="channels">
+  <%= render partial: 'header', locals: {title: "Channel browser"} %>
+  <ul class="channels__list">
+    <% @channels.each do |c| %>
+      <li class="channels__list__item">
+        <div class="text-container">
+          <a href="/chats?channel_id=<%= c.id %>">
+            <div>
+              <i>#</i>
+              <h3 class="title"><%= c.name %></h3>
+            </div>
+          </a>
+          <div>
+            <span class="member">4 members</span>
+            <span>&#8729;</span>
+            <span class="description"><%= c.description %></span>
+          </div>
+        </div>
+        <div class="option-container">
+          <a href="/chats?channel_id=<%= c.id %>" class="viewBtn">View</a>
+          <a href="" class="joinBtn">Join</a>
+        </div>
+      </li>
+    <% end %>
+  </ul>
+</section>

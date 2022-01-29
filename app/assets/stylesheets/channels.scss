@@ -1,3 +1,69 @@
-// Place all the styles related to the channels controller here.
-// They will automatically be included in application.css.
-// You can use Sass (SCSS) here: http://sass-lang.com/
+.channels {
+  .channels__list {
+    padding: 20px;
+
+    .channels__list__item {
+      &:hover {
+        background: rgb(250, 250, 250);
+
+        .option-container {
+          display: block;
+        }
+      }
+      padding: 16px 20px;
+      border-top: 1px solid var(--light-gray);
+      position: relative;
+
+      .text-container {
+        div {
+          display: flex;
+          justify-content: flex-start;
+          gap: 5px;
+
+          &:first-child {
+            margin-bottom: 5px;
+          }
+        }
+
+        .title {
+          font-size: 15px;
+          font-weight: 600;
+        }
+
+        span {
+          font-size: 13px;
+          color: gray;
+        }
+      }
+
+      .option-container {
+        display: none;
+        position: absolute;
+        right: 20px;
+        top: 50%;
+        transform: translateY(-50%);
+
+        a {
+          display: inline-block;
+          width: 90px;
+          padding: 10px 0;
+          text-align: center;
+          border: 1px solid var(--light-gray);
+          border-radius: 5px;
+          font-size: 14px;
+          font-weight: 600;
+
+          &.viewBtn {
+            margin-right: 5px;
+            background: white;
+          }
+
+          &.joinBtn {
+            background: var(--dark-green);
+            color: white;
+          }
+        }
+      }
+    }
+  }
+}

@@ -1,6 +1,10 @@
-<div class="chats__header">
-  <h2 class="chats__header__channelName">channel name</h2>
-  <div class="chats__header__member">
+<div class="header">
+  <h2 class="header__title">
+    <a href="<%= channel_path @channel.id%>">
+      <%= @channel.name %>
+    </a>
+  </h2>
+  <div class="header__member">
 
   </div>
 </div>

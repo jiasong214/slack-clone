@@ -1,4 +1,5 @@
 class ChatsController < ApplicationController
+  # how to manage these
   $current_channel = 3
   $current_user = User.last
   $all_channels = Channel.all
@@ -18,27 +19,29 @@ class ChatsController < ApplicationController
 
     # get current channel's data
     @channel = Channel.find $current_channel
+
+    # if channel is deleted
+    if @channel.present?
+      @channel = Channel.last
+    end
+
     # get chats that belongs to current channel
     @chats = Chat.where("channel_id = #{$current_channel}")
 
-    @new_chat = Chat.new
+    @chat = Chat.new
   end
-
-  # def show
-  # end
 
   def edit
     @channel = Channel.find $current_channel
     @chats = Chat.where("channel_id = #{$current_channel}")
 
-    @new_chat = Chat.find params[:id]
+    @chat = Chat.find params[:id]
   end
 
   def update
     chat = Chat.find params[:id]
     chat.update chat_params
 
-    # how to redirect to current channel
     redirect_to chats_path
   end
 
