@@ -12,3 +12,26 @@
 //
 //= require rails-ujs
 //= require_tree .
+
+
+window.onload = () => {
+  const chatForm = document.querySelector(".chats__form");
+  const input = document.querySelector(".chats__form__input");
+  const text = document.querySelector(".chats__form__text");
+
+  // fill the text with input value when a user click edit chat
+  text.innerHTML = input.value;
+
+  // if a user enter, submit a form
+  text.addEventListener("keypress", (e) => {
+    if (e.key === "Enter") {
+      input.value = text.innerHTML;
+      chatForm.submit();
+    }
+  });
+
+  // send a text contents as a value when form is submitted
+  chatForm.addEventListener("submit", () => {  
+    input.value = text.innerHTML;
+  });
+}

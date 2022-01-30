@@ -1,5 +1,8 @@
 <section class="channels">
   <%= render partial: 'header', locals: {title: "Channel browser"} %>
+  <form action="" class="channels__searchForm">
+    <input type=text name="search_term" placeholder="Search by channel name">
+  </form>
   <ul class="channels__list">
     <% @channels.each do |c| %>
       <li class="channels__list__item">

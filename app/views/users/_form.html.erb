@@ -1,11 +1,28 @@
-<%= form_with model: @user, class: "users__form", local: true do |u| %>
-  <div>
-    <%= u.label :username %>
-    <%= u.text_field :username %>
+<%= form_with model: @user, class: "users__form", local: true do |f| %>
+  <div class="left-box">
+    <div>
+      <%= f.label :username %>
+      <%= f.text_field :username %>
+    </div>
+    <div>
+      <%= f.label :email %>
+      <%= f.text_field :email %>
+    </div>
+    <div>
+      <%= f.label :pwd, "Password" %>
+      <%= f.password_field :pwd %>
+      <%= f.password_field :pwd %>
+    </div>
   </div>
-  <div>
-    <%= u.label :image %>
-    <%= u.text_field :image %>
+  <div class="right-box">
+    <%= f.label :image, "Profile photo" %>
+    <div class="img-container">
+      <img src="" alt="" >
+    </div>
+    <%= f.file_field :image %>
   </div>
-  <%= u.submit %>
+  <div class="btn-box">
+    <%= link_to "Cancel", user_path(@user.id) %>
+    <%= f.submit %>
+  </div>
 <% end %>

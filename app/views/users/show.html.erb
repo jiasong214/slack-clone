@@ -1,13 +1,13 @@
 <section class="users">
   <%= render partial: 'header', locals: {title: "Profile"} %>
 
-  <div class="profile">
+  <div class="users__profile">
     <div class="img-container">
       <img src="<%= @user.image %>" alt="">
     </div>
     <h2 class="username"><%= @user.username %></h2>
     <a href="<%= edit_user_path @user.id %>" class="editBtn">
-      <img src="" alt="">
+      <i><img src="/assets/edit-icon.png" alt="edit icon"></i>
       <span>Edit profile</span>
     </a>
     <div class="profile-innerbox">

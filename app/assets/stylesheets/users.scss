@@ -1,12 +1,12 @@
 .users {
-  .profile {
+  .users__profile {
     padding: 20px;
 
     .img-container {
       width: 256px;
       height: 256px;
       margin: 0 auto 20px;
-      border-radius: 10px;
+      border-radius: 5px;
       overflow: hidden;
 
       img {
@@ -19,7 +19,7 @@
       font-weight: 600;
       text-transform: capitalize;
       text-align: center;
-      margin-bottom: 20px;
+      margin-bottom: 30px;
     }
 
     .editBtn {
@@ -27,11 +27,23 @@
       width: fit-content;
       margin: 0 auto 50px;
 
-      img {
+      i {
         display: block;
-        width: 30px;
-        height: 30px;
-        margin: 0 auto;
+        width: 40px;
+        height: 40px;
+        margin: 0 auto 5px;
+        border-radius: 50%;
+        background: var(--light-gray);
+        position: relative;
+
+        img {
+          display: block;
+          width: 60%;
+          position: absolute;
+          top: 50%;
+          left: 50%;
+          transform: translate(-50%, -50%);
+        }
       }
 
       span {
@@ -63,6 +75,91 @@
             color: #1264a3;
           }
         }
+      }
+    }
+  }
+
+  .users__form {
+    width: fit-content;
+    min-width: 60vw;
+    padding: 20px;
+    display: grid;
+    grid-template-columns: auto auto;
+    gap: 30px;
+
+    .left-box {
+      > div {
+        margin-bottom: 30px;
+
+        label {
+          display: block;
+          margin-bottom: 10px;
+          font-size: 15px;
+          font-weight: 400;
+        }
+
+        input {
+          all: unset;
+          display: inline-block;
+          width: 100%;
+          padding: 8px;
+          border: 1px solid var(--main-gray);
+          border-radius: 5px;
+
+          &:focus {
+            outline: 3px solid rgb(134, 200, 255);
+          }
+
+          &[type="password"] {
+            margin-bottom: 5px;
+          }
+        }
+      }
+    }
+
+    .right-box {
+      // border: 1px solid red;
+
+      label {
+        display: block;
+        margin-bottom: 10px;
+        font-size: 15px;
+        font-weight: 400;
+      }
+
+      .img-container {
+        width: 192px;
+        height: 192px;
+        border-radius: 5px;
+        background: gray;
+        margin-bottom: 10px;
+
+        img {
+          display: block;
+          width: 100%;
+        }
+      }
+    }
+
+    .btn-box {
+      a,
+      input[type="submit"] {
+        all: unset;
+        width: fit-content;
+        padding: 10px 20px;
+        border-radius: 5px;
+        border: 1px solid var(--main-gray);
+
+        background: var(--dark-green);
+        font-size: 15px;
+        color: white;
+        font-weight: 400;
+      }
+
+      a {
+        background: white;
+
+        color: black;
       }
     }
   }

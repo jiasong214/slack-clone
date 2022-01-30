@@ -10,7 +10,7 @@
             <p class="username"> <%= $all_users.find(c.user_id).username %> </p>
             <span class="time"> <%= c.created_at %> </span>
           </div>
-          <p class="msg"> <%= c.msg %> </p>
+          <p class="msg"> <%= c.msg.html_safe %> </p>
         </div>
         <div class="option-container">
           <%= link_to "Edit", edit_chat_path(c.id) %>
