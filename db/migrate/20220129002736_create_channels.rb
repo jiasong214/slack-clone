@@ -4,8 +4,7 @@ class CreateChannels < ActiveRecord::Migration[5.2]
       t.text :name
       t.text :description
       t.boolean :private
-      t.integer :user_id
-      t.jsonb :user_list
+      t.integer :owner_id
 
       t.timestamps
     end

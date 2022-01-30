@@ -1,6 +1,6 @@
 class ChatsController < ApplicationController
   # how to manage these
-  $current_channel = 3
+  $current_channel = Channel.first.id
   $current_user = User.last
   $all_channels = Channel.all
   $all_users = User.all
