@@ -1,24 +1,14 @@
 <div class="chats__form-container">
   <div class="chats__form-innerbox">
-    <div class="formatting-bar">
-      <button class='bold-btn' onclick="document.execCommand('bold')">
-        <img src="assets/bold-icon.png" alt="" >
-      </button>
-      <button class='italic-btn' onclick="document.execCommand('italic')">
-        <img src="assets/italic-icon.png" alt="" >
-      </button>
-      <button class='midline-btn' onclick="document.execCommand('strikeThrough')">
-        <img src="assets/strikethrough-icon.png" alt="" >
-      </button>
-    </div>
-    <div contenteditable="true" tabindex="-1" class="chats__form__text"></div>
-    
+
+    <div id="editor"></div>
+
     <%= form_with model: @chat, class: "chats__form", local: true do |f| %>
       <%= f.hidden_field :msg, class: "chats__form__input" %>
       <%= f.hidden_field :channel_id, value: @channel.id %>
       <%= f.hidden_field :user_id, value: $current_user.id %>
       <button type="submit">
-        <img src="assets/send-icon.png" alt="submit">
+        <img src="/assets/send-icon.png" alt="submit">
       </button>
     <% end %>
   </div>

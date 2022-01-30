@@ -6,6 +6,7 @@ class ChannelsController < ApplicationController
   def new
     @channel = Channel.new
 
+    $all_channels = Channel.all
   end
 
   def create
@@ -16,6 +17,7 @@ class ChannelsController < ApplicationController
 
   def index
     @channels = Channel.all
+    $all_channels = Channel.all
   end
 
   def show
