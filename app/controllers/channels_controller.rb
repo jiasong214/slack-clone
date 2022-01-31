@@ -7,12 +7,15 @@ class ChannelsController < ApplicationController
   end
 
   def create
-    channel = Channel.new channel_params
-    channel.owner_id = @current_user.id
-    channel.save
+    @channel = Channel.new channel_params
+    @channel.owner_id = @current_user.id
+    @channel.save
 
-    if channel.persisted?
-      redirect_to channel_path channel.id
+    # channel's owner should be joinned in the channel
+    @channel.users << @current_user
+
+    if @channel.persisted?
+      redirect_to channel_path @channel.id
     else
       render :new
     end
@@ -24,19 +27,24 @@ class ChannelsController < ApplicationController
   end
 
   def show
-    @channel = Channel.find params[:id]
+    @channel = Channel.find params[:channel_id]
+    @all_users = User.all
+  end
+
+  def members
+    @channel = Channel.find params[:channel_id]
     @all_users = User.all
   end
 
   def edit
-    @channel = Channel.find params[:id]
+    @channel = Channel.find params[:channel_id]
 
     redirect_to channel_path channel.id unless @channel.owner_id == @current_user.id
   end
 
   def update
     # get the channel a user wants to update
-    channel = Channel.find params[:id]
+    channel = Channel.find params[:channel_id]
 
     # check if the user is matched with channel owner
     if channel.owner_id != @current_user.id
@@ -53,7 +61,7 @@ class ChannelsController < ApplicationController
   end
 
   def destroy
-    channel = Channel.find params[:id]
+    channel = Channel.find params[:channel_id]
 
     if channel.owner_id != @current_user.id
       redirect_to channel_path channel.id
@@ -62,15 +70,28 @@ class ChannelsController < ApplicationController
 
     Channel.destroy channel.id
 
-    redirect_to channel_path channel.id
+    redirect_to chats_path
   end
 
-  # def join
-  #   channel = Channel.find params[:id]
-  #   $current_user.update(
-  #     channel_id: channel.id
-  #   )
-  # end
+  def join
+    @channel = Channel.find params[:channel_id]
+
+    # user can join the table only when they haven't
+    # unless @channel.users.find(@current_user.id).exists?
+      @channel.users << @current_user
+    # end
+
+    # 현재 채널로 리다이렉트 해줘야 함
+    redirect_to chats_path
+  end
+
+  def leave
+    @channel = Channel.find params[:channel_id]
+
+    @channel.users.delete @current_user
+
+    redirect_to chats_path
+  end
 
   def channel_params
     params.require(:channel).permit(:name, :description, :private)

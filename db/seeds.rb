@@ -4,30 +4,37 @@
 User.destroy_all
 jia = User.create!(
   username: "jia",
-  password: "jia",
+  password: "123123",
   email: "jiasong214@gmail.com",
   image: "https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png"
 )
 
 nico = User.create!(
   username: "nico",
-  password: "1",
-  email: "nico4@gmail.com",
-  image: "https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png"
+  password: "123123",
+  email: "nico@gmail.com",
+  image: "https://www.freecodecamp.org/news/content/images/2019/07/cover-photo.png"
+)
+
+mimi = User.create!(
+  username: "mimi",
+  password: "123123",
+  email: "mimi@gmail.com",
+  image: "https://i.kym-cdn.com/entries/icons/original/000/026/638/cat.jpg"
 )
 
 Channel.destroy_all
 first_channel = Channel.create!(
-  name: "first channel",
-  description: "this is first channel in Jia's slack clone",
+  name: "Jia's public channel",
+  description: "this is Jia's public channel",
   private: 0,
   owner_id: jia.id
 )
 
 second_channel = Channel.create!(
-  name: "second channel",
-  description: "this is second channel in Jia's slack clone",
-  private: 0,
+  name: "Jia's private channel",
+  description: "this is Jia's private channel",
+  private: 1,
   owner_id: jia.id
 )
 
@@ -38,16 +45,17 @@ Chat.create!(
   channel_id: first_channel.id
 )
 Chat.create!(
-  msg: "Hello",
+  msg: "Hello, private channel",
   user_id: jia.id,
-  channel_id: first_channel.id
+  channel_id: second_channel.id
 )
 Chat.create!(
   msg: "Hellooooooo",
-  user_id: jia.id,
+  user_id: mimi.id,
   channel_id: second_channel.id
 )
 
 # jia is joined in both channels
 jia.channels << first_channel << second_channel
-nico.channels << second_channel
+nico.channels << first_channel
+mimi.channels << second_channel

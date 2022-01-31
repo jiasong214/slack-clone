@@ -37,7 +37,13 @@ class UsersController < ApplicationController
   end
 
   def destroy
-    User.destroy @current_user.id
+    @current_user.update(
+      image: "",
+      password: "",
+      email: ""
+    )
+    # User.destroy @current_user.id
+
 
     redirect_to login_path
   end

@@ -1,5 +1,5 @@
 class ChatsController < ApplicationController
-  before_action :check_login, :get_current_channel, :fetch_user_channels
+  before_action :check_login, :fetch_user_channels, :get_current_channel
 
   def create    
     chat = Chat.new chat_params
@@ -58,7 +58,7 @@ class ChatsController < ApplicationController
       return
     end
 
-    chat.destroy params[:id]
+    Chat.destroy params[:id]
 
     redirect_to chats_path
   end

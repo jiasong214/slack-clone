@@ -1,0 +1,60 @@
+<%= structure = capture do %>
+  <section class="channels">
+    <%= render partial: 'header', locals: {title: @channel.name + "'s member"} %>
+    <div class="channels__members-wrapper">
+      <div class="channels__members">
+        <ul>
+          <li>
+            <a href="" class="addBtn">
+              <div class="img-container">
+                <img src="/assets/addMember-icon.jpeg" alt="">
+              </div>
+              <div class="text-container">
+                Add people
+              </div>
+            </a>
+          </li>
+          <% @channel.users.each do |u| %>
+            <li>
+              <a href="">
+                <div class="img-container">
+                  <img src="<%= u.image %>" alt="">
+                </div>
+                <div class="text-container">
+                  <p> <%= u.username %> </p>
+                  <p> create user "what i do" </p>
+                </div>
+              </a>
+            </li>
+          <% end %>
+        </ul>
+      </div>
+
+      <hr>
+      <h2>Temporary user list here</h2>
+      <div class="channels__members">
+        <ul>
+          <% @all_users.each do |u| %>
+            <li>
+              <a href="">
+                <div class="img-container">
+                  <img src="<%= u.image %>" alt="">
+                </div>
+                <div class="text-container">
+                  <p> <%= u.username %> </p>
+                  <p> create user "what i do" </p>
+                </div>
+              </a>
+            </li>
+          <% end %>
+        </ul>
+      </div>
+    </div>
+
+
+
+
+  </section>
+<% end %>
+
+<%= render 'shared/template', :structure => structure %>

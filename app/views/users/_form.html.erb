@@ -11,7 +11,6 @@
     <div>
       <%= f.label :password, "Password" %>
       <%= f.password_field :password %>
-      <%= f.password_confirmation :password %>
     </div>
   </div>
   <div class="right-box">
@@ -22,7 +21,7 @@
     <%= f.file_field :image %>
   </div>
   <div class="btn-box">
-    <%= link_to "Cancel", user_path(f.id) %>
+    <%= link_to "Cancel", user_path(@current_user.id) %>
     <%= f.submit %>
   </div>
 <% end %>

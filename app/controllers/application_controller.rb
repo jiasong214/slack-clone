@@ -3,12 +3,6 @@ class ApplicationController < ActionController::Base
   before_action :fetch_user
 
   def fetch_user
-    # check if the user id in the session hash is set, 
-    # and if it is the ID of an actual user in DB,
-    # get the row object for that user and save it into @current_user which any action's code can access
-
-    # if the ID is not a current ID, consider it invalid and delete the session
-    
     if session[:user_id].present?
       @current_user = User.find_by id: session[:user_id]
     end
@@ -18,8 +12,6 @@ class ApplicationController < ActionController::Base
   end
 
   def check_login
-    # if user is not logged in, redirect them
-    # this will prevent user access by URI without login
     unless @current_user.present?
       flash[:error] = "You must be logged in to perform that action"
       redirect_to login_path
