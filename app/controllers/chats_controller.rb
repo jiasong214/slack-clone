@@ -1,57 +1,69 @@
 class ChatsController < ApplicationController
-  # how to manage these
-  $current_channel = Channel.first.id
-  $current_user = User.last
-  $all_channels = Channel.all
-  $all_users = User.all
+  before_action :check_login, :get_current_channel, :fetch_user_channels
 
   def create    
-    Chat.create chat_params
-
+    chat = Chat.new chat_params
+    chat.user_id = @current_user.id
+    chat.channel_id = @current_channel.id
+    chat.save
+    
     redirect_to chats_path
   end
 
   def index
-    # if a user clicks channel name, update $current_channel
+    # if a user clicks channel name, update @current_channel
     if params[:channel_id].present?
-      $current_channel = params[:channel_id]
-    end
-
-    # get current channel's data
-    @channel = Channel.find $current_channel
-
-    # if channel is deleted
-    if @channel.present?
-      @channel = Channel.last
+      set_current_channel params[:channel_id]
     end
 
     # get chats that belongs to current channel
-    @chats = Chat.order("created_at DESC").where("channel_id = #{$current_channel}")
+    @chats = Chat.order("created_at DESC").where("channel_id = #{@current_channel.id}")
 
+    # to get username and thigns
+    @all_users = User.all
+
+    # for the input
     @chat = Chat.new
   end
 
   def edit
-    @channel = Channel.find $current_channel
-    @chats = Chat.where("channel_id = #{$current_channel}")
-
+    @chats = Chat.order("created_at DESC").where("channel_id = #{@current_channel.id}")
     @chat = Chat.find params[:id]
+
+    @all_users = User.all
+
+    redirect_to chats_path unless @chat.user_id == @current_user.id
   end
 
   def update
     chat = Chat.find params[:id]
-    chat.update chat_params
 
-    redirect_to chats_path
+    if chat.user_id != @current_user.id
+      redirect_to chats_path
+      return
+    end
+
+    if chat.update chat_params
+      redirect_to chats_path
+    else
+      render :edit
+    end
   end
 
   def destroy
-    Chat.destroy params[:id]
+    chat = Chat.find params[:id]
+
+    if chat.user_id != @current_user.id
+      redirect_to chats_path
+      return
+    end
+
+    chat.destroy params[:id]
 
     redirect_to chats_path
   end
 
   def chat_params
-    params.require(:chat).permit(:msg, :channel_id, :user_id)
+    params.require(:chat).permit(:msg)
   end
 end

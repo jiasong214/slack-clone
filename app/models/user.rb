@@ -1,7 +1,14 @@
 class User < ApplicationRecord
-  # user can own many channels
-  # user can create many chats
-  # has_many :channels
+  has_secure_password
+
   has_and_belongs_to_many :channels
+  # has_and_belongs_to_many :channels, optional: true
   has_many :chats
+
+  validates :email, format: { with: URI::MailTo::EMAIL_REGEXP }
+  validates_uniqueness_of :email, scope: :email
+  validates :username, presence: true
+  validates_uniqueness_of :username, scope: :username
+  validates :password, length: { minimum: 4 }
+
 end

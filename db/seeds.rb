@@ -4,14 +4,14 @@
 User.destroy_all
 jia = User.create!(
   username: "jia",
-  pwd: "1",
+  password: "jia",
   email: "jiasong214@gmail.com",
   image: "https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png"
 )
 
 nico = User.create!(
   username: "nico",
-  pwd: "1",
+  password: "1",
   email: "nico4@gmail.com",
   image: "https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png"
 )

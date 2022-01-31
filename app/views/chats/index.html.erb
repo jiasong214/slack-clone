@@ -1,5 +1,18 @@
-<section class="chats">
-  <%= render partial: 'header' %>
-  <%= render partial: 'list' %>
-  <%= render partial: 'form' %>
-</section>
+<div id="container">
+  <%= render partial: 'shared/header' %>
+
+  <div class="workplace">
+    <%= render partial: 'shared/sidebar' %>
+    <main class="workplace__primaryView">
+
+      <section class="chats">
+        <%= render partial: 'header' %>
+        <%= render partial: 'list' %>
+        <%= render partial: 'form' %>
+      </section>
+      
+    </main>
+  </div>
+</div>
+
+

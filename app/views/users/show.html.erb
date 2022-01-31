@@ -1,28 +1,33 @@
-<section class="users">
-  <%= render partial: 'header', locals: {title: "Profile"} %>
+<%= structure = capture do %>
+  <section class="users">
+    <%= render partial: 'header', locals: {title: "Profile"} %>
 
-  <div class="users__profile">
-    <div class="img-container">
-      <img src="<%= @user.image %>" alt="">
+    <div class="users__profile">
+      <div class="img-container">
+        <img src="<%= @current_user.image %>" alt="">
+      </div>
+      <h2 class="username"><%= @current_user.username %></h2>
+      <a href="<%= edit_user_path @current_user.id %>" class="editBtn">
+        <i><img src="/assets/edit-icon.png" alt="edit icon"></i>
+        <span>Edit profile</span>
+      </a>
+      <div class="profile-innerbox">
+        <div>
+          <p>Display name</p>
+          <p class="displayName"><%= @current_user.username %></p>
+        </div>
+        <div>
+          <p>Local time</p>
+          <p>asdfsdf</p>
+        </div>
+        <div>
+          <p>Email address</p>
+          <p class="email"><%= @current_user.email %></p>
+        </div>
+      </div>
+      <%= link_to "Logout", login_path, method: 'delete', class: "logoutBtn" %>
     </div>
-    <h2 class="username"><%= @user.username %></h2>
-    <a href="<%= edit_user_path @user.id %>" class="editBtn">
-      <i><img src="/assets/edit-icon.png" alt="edit icon"></i>
-      <span>Edit profile</span>
-    </a>
-    <div class="profile-innerbox">
-      <div>
-        <p>Display name</p>
-        <p class="displayName"><%= @user.username %></p>
-      </div>
-      <div>
-        <p>Local time</p>
-        <p>asdfsdf</p>
-      </div>
-      <div>
-        <p>Email address</p>
-        <p class="email"><%= @user.email %></p>
-      </div>
-    </div>
-  </div>
-</section>
+  </section>
+<% end %>
+
+<%= render 'shared/template', :structure => structure %>

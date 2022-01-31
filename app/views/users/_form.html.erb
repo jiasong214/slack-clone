@@ -1,4 +1,4 @@
-<%= form_with model: @user, class: "users__form", local: true do |f| %>
+<%= form_with model: @current_user, class: "users__form", local: true do |f| %>
   <div class="left-box">
     <div>
       <%= f.label :username %>
@@ -9,9 +9,9 @@
       <%= f.text_field :email %>
     </div>
     <div>
-      <%= f.label :pwd, "Password" %>
-      <%= f.password_field :pwd %>
-      <%= f.password_field :pwd %>
+      <%= f.label :password, "Password" %>
+      <%= f.password_field :password %>
+      <%= f.password_confirmation :password %>
     </div>
   </div>
   <div class="right-box">
@@ -22,7 +22,7 @@
     <%= f.file_field :image %>
   </div>
   <div class="btn-box">
-    <%= link_to "Cancel", user_path(@user.id) %>
+    <%= link_to "Cancel", user_path(f.id) %>
     <%= f.submit %>
   </div>
 <% end %>

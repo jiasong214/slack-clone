@@ -1,29 +1,33 @@
-<section class="channels">
-  <%= render partial: 'header', locals: {title: "Channel browser"} %>
-  <form action="" class="channels__searchForm">
-    <input type=text name="search_term" placeholder="Search by channel name">
-  </form>
-  <ul class="channels__list">
-    <% @channels.each do |c| %>
-      <li class="channels__list__item">
-        <div class="text-container">
-          <a href="/chats?channel_id=<%= c.id %>">
+<%= structure = capture do %>
+  <section class="channels">
+    <%= render partial: 'header', locals: {title: "Channel browser"} %>
+    <form action="" class="channels__searchForm">
+      <input type=text name="search_term" placeholder="Search by channel name">
+    </form>
+    <ul class="channels__list">
+      <% @channels.each do |c| %>
+        <li class="channels__list__item">
+          <div class="text-container">
+            <a href="/chats?channel_id=<%= c.id %>">
+              <div>
+                <i>#</i>
+                <h3 class="title"><%= c.name %></h3>
+              </div>
+            </a>
             <div>
-              <i>#</i>
-              <h3 class="title"><%= c.name %></h3>
+              <span class="member"><%= c.users.count %> members</span>
+              <span>&#8729;</span>
+              <span class="description"><%= c.description %></span>
             </div>
-          </a>
-          <div>
-            <span class="member">4 members</span>
-            <span>&#8729;</span>
-            <span class="description"><%= c.description %></span>
           </div>
-        </div>
-        <div class="option-container">
-          <a href="/chats?channel_id=<%= c.id %>" class="viewBtn">View</a>
-          <a href="" class="joinBtn">Join</a>
-        </div>
-      </li>
-    <% end %>
-  </ul>
-</section>
+          <div class="option-container">
+            <a href="/chats?channel_id=<%= c.id %>" class="viewBtn">View</a>
+            <a href="" class="joinBtn">Join</a>
+          </div>
+        </li>
+      <% end %>
+    </ul>
+  </section>
+<% end %>
+
+<%= render 'shared/template', :structure => structure %>

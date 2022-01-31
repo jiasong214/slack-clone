@@ -1,3 +1,11 @@
+<% if @channel.errors.any? %>
+  <ul>
+    <% @channel.errors.full_messages.each do |e| %>
+      <li><%= e %></li>
+    <% end %>
+  </ul>
+<% end %>
+
 <%= form_with model: @channel, class: "channels__form", local: true do |f| %>
   <p>Channels are where your team communicates. They're best when organized around a topic. - #marketing, for example</p>
   <div>
@@ -9,14 +17,12 @@
     <%= f.text_field :description %>
     <p>What is this channel about?</p>
   </div>
-  <div  class="private">
+  <div class="private">
     <div>
       <%= f.label :private %>
       <p>When channel is set to private, it can only be viewed or joined by invitation.</p>
     </div>
     <%= f.check_box :private %>
   </div>
-  
-  <%= f.hidden_field :user_id, value: $current_user.id %>
   <%= f.submit %>
 <% end %>

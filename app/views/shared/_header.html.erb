@@ -1,0 +1,11 @@
+<header>
+  <div></div>
+  <form action="" class="header__searchForm">
+    <input type="text" placeholder="Search blabla" >
+  </form>
+  <div class="header__profile">
+    <a href="<%= user_path @current_user.id %>">
+      <img src="<%= @current_user.image %>" alt="user profile">
+    </a>
+  </div>
+</header>

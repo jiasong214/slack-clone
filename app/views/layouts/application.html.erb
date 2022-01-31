@@ -8,71 +8,9 @@
     <%= csp_meta_tag %>
     <%= stylesheet_link_tag    'application', media: 'all' %>
     <%= javascript_include_tag 'application' %>
-
-
   </head>
 <body>
-   <!-- header on top -->
-  <header>
-    <div></div>
-    <form action="" class="header__searchForm">
-      <input type="text" placeholder="Search blabla" >
-    </form>
-    <div class="header__profile">
-      <a href="<%= user_path $current_user.id %>">
-        <img src="<%= $current_user.image %>" alt="user profile">
-      </a>
-    </div>
-  </header>
-
-  <div class="workplace">
-  <!-- menu on left side -->
-    <aside class="workplace__sidebar">
-      <h1 class="workplace__sidebar__title">
-        <%= link_to "GA Immersive Students", root_path %>
-      </h1>
-      <div class="workplace__sidebar-scrollContainer">
-        <details open class="workplace__sidebar__channels">
-          <summary>Channels</summary>
-          <ul>
-            <% $all_channels.each do |c| %>
-              <li class="<%= params[:channel_id].to_i == c.id ? "active" : "" %>">
-                <a href="/chats?channel_id=<%= c.id %>">
-                  <i> <%= c.private ? "$" : "#" %> </i>
-                  <span> <%= c.name %> </span>
-                </a>
-              </li>
-            <% end %>
-            <li class="workplace__sidebar__channels__option">
-              <a href="<%= channels_path %>">
-                <i> + </i>
-                <span>Browse channels</span>
-              </a>
-            </li>
-            <li class="workplace__sidebar__channels__option">
-              <a href="<%= new_channel_path %>">
-                <i> + </i>
-                <span>Create a channel</span>
-              </a>
-            </li>
-          </ul>
-        </details>
-        <details open class="workplace__sidebar__DMs">
-          <summary>Direct Messages</summary>
-          <ul>
-            <li>
-              <i>icon</i>
-              <span>Example DM</span>
-            </li>
-          </ul>
-        </details>
-      </div>
-    </aside>
-
-    <!-- main work place -->
-    <main class="workplace__primaryView">
-      <%= yield %>
-    </main>
+  <%= yield %>
   </div>
 </body>
 </html>

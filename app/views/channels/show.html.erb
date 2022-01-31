@@ -1,31 +1,38 @@
-<section class="channels">
-  <%= render partial: 'header', locals: {title: "Channel info"} %>
-  <div class="channels__info-wrapper">
-    <div class="channels__info">
-      <div>
-        <p>Name</p>
-        <p><%= @channel.name %></p>
-      </div>
-      <div>
-        <p>Description</p>
-        <p><%= @channel.description %></p>
-      </div>
-      <div>
-        <p>Created by</p>
-        <p><%= $all_users.find(@channel.user_id).username %></p>
-      </div>
-      <div>
-        <p>Member</p>
-        <p><%= @channel.user_list %></p>
-      </div>
-      <div>
-        <% if $current_user.id != @channel.user_id %>
-          <%= link_to "Leave channel", edit_channel_path(@channel.id), class: "leaveBtn" %>
-        <% else %>
-          <%= link_to "Edit", edit_channel_path(@channel.id), class: "editBtn" %>
-          <%= link_to "Delete", channel_path(@channel.id), method: 'delete', class: "deleteBtn" %>
-        <% end %>
+<%= structure = capture do %>
+  <section class="channels">
+    <%= render partial: 'header', locals: {title: "Channel info"} %>
+    <div class="channels__info-wrapper">
+      <div class="channels__info">
+        <div>
+          <p>Name</p>
+          <p><%= @channel.name %></p>
+        </div>
+        <div>
+          <p>Description</p>
+          <p><%= @channel.description %></p>
+        </div>
+        <div>
+          <p>Created by</p>
+          <p><%= @all_users.find(@channel.owner_id).username %></p>
+        </div>
+        <div>
+          <p>Member</p>
+          <p><%= @channel.users.count %></p>
+        </div>
+        <div>
+          <p><%= @channel.private ? "Private channel" : "Public channel" %></p>
+        </div>
+        <div>
+          <% if @current_user.id != @channel.owner_id %>
+            <%= link_to "Leave channel", edit_channel_path(@channel.id), class: "leaveBtn" %>
+          <% else %>
+            <%= link_to "Edit", edit_channel_path(@channel.id), class: "editBtn" %>
+            <%= link_to "Delete", channel_path(@channel.id), method: 'delete', class: "deleteBtn" %>
+          <% end %>
+        </div>
       </div>
     </div>
-  </div>
-</section>
+  </section>
+<% end %>
+
+<%= render 'shared/template', :structure => structure %>
