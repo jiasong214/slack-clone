@@ -9,13 +9,13 @@
       <%= flash[:error] %>
     <% end %>
 
-    <%= form_with model: @user, local: true do |f| %>
+    <%= form_with model: @user, class: "form", local: true do |f| %>
 
       <%= f.text_field :email, placeholder: "Email address" %>
       <%= f.text_field :username, placeholder: "Username" %>
       <%= f.password_field :password, placeholder: "Password" %>
 
-      <%= f.submit "Signup" %>
+      <%= f.submit "Signup", class: "btn" %>
     <% end %>
   </div>
 

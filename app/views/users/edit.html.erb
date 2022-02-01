@@ -2,7 +2,7 @@
   <section class="users">
     <%= render partial: 'header', locals: {title: "Edit a profile"} %>
     
-    <%= form_with model: @current_user, class: "users__form", local: true do |f| %>
+    <%= form_with model: @current_user, class: "form", local: true do |f| %>
       <div class="left-box">
         <div>
           <%= f.label :username %>
@@ -21,9 +21,9 @@
         </div>
         <%= f.file_field :image %>
       </div>
-      <div class="btn-box">
-        <%= link_to "Cancel", user_path(@current_user.id) %>
-        <%= f.submit %>
+      <div class="option-container">
+        <%= link_to "Cancel", user_path(@current_user.id), class: 'btn' %>
+        <%= f.submit "Submit", class: 'btn' %>
       </div>
     <% end %>
   </section>

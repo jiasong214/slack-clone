@@ -1,8 +1,10 @@
 <%= structure = capture do %>
+
   <section class="channels">
     <%= render partial: 'header', locals: {title: "Edit my channel"} %>
     <%= render partial: 'form' %>
   </section>
+  
 <% end %>
 
 <%= render 'shared/template', :structure => structure %>

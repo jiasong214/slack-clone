@@ -1,0 +1,38 @@
+header {
+  width: 100vw;
+  height: 38px;
+  background: var(--dark-purple);
+  display: grid;
+  grid-template-columns: 260px 1fr auto;
+  align-items: center;
+  position: fixed;
+  top: 0;
+  left: 0;
+
+  .header__searchForm input {
+    all: unset;
+    width: 100%;
+    max-width: 720px;
+    height: 24px;
+    padding: 0 10px;
+    background-color: rgba(255, 255, 255, 0.2);
+    border-radius: 5px;
+    font-size: 13px;
+    font-weight: 400;
+
+    &::placeholder {
+      color: white;
+      text-align: center;
+    }
+
+    &:focus {
+      background-color: white;
+    }
+  }
+
+  .img-container {
+    width: 28px;
+    height: 28px;
+    margin: 0 16px;
+  }
+}

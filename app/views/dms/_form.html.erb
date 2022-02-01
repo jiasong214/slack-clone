@@ -12,7 +12,7 @@
     <%= form_with model: @chat, url: "/dms/#{@recipient.id}/chats", class: "chats__form", local: true do |f| %>
       <%= f.hidden_field :msg, class: "chats__form__input" %>
       <button type="submit">
-        <img src="/assets/send-icon.png" alt="submit">
+        <%= image_tag("/assets/send-icon.png") %>
       </button>
     <% end %>
 

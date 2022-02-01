@@ -24,7 +24,7 @@
                 <p> <%= u.title %> </p>
               </div>
               <div class="option-container">
-                <%= link_to "DM", dms_path(u.id), class: "dmBtn" %>
+                <%= link_to "DM", dms_path(u.id), class: "btn" %>
               </div>
             </li>
           <% end %>
@@ -45,17 +45,14 @@
                 <p> <%= u.title %> </p>
               </div>
               <div class="option-container">
-                <%= link_to "Invite", invite_channel_path(@channel.id, u.id), method: 'patch', class: "inviteBtn" %>
-                <%= link_to "DM", dms_path(u.id), class: "dmBtn" %>
+                <%= link_to "Invite", invite_channel_path(@channel.id, u.id), method: 'patch', class: "btn" %>
+                <%= link_to "DM", dms_path(u.id), class: "btn" %>
               </div>
             </li>
           <% end %>
         </ul>
       </div>
     </div>
-
-
-
   </section>
 <% end %>
 

@@ -1,9 +1,4 @@
 .dms {
-  height: calc(100vh - 38px);
-  position: relative;
-  display: grid;
-  grid-template-rows: 50px 1fr auto;
-
   .header {
     display: flex;
     justify-content: flex-start !important;
@@ -12,13 +7,6 @@
     .img-container {
       width: 28px;
       height: 28px;
-      border-radius: 5px;
-      background: var(--light-gray);
-      overflow: hidden;
-
-      img {
-        width: 100%;
-      }
     }
   }
 }

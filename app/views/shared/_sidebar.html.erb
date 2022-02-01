@@ -1,6 +1,6 @@
 <aside class="workplace__sidebar">
   <h1 class="workplace__sidebar__title">
-    <%= link_to "GA Immersive Students", root_path %>
+    <%= link_to "GA Immersive Students", root_path, class: "ellip-text" %>
   </h1>
   <div class="workplace__sidebar-scrollContainer">
     <details open class="workplace__sidebar__channels">
@@ -10,26 +10,26 @@
           <li class="<%= params[:channel_id].to_i == c.id ? "active" : "" %>">
             <a href="/channels/<%= c.id %>/chats">
               <i> <%= c.private ? "$" : "#" %> </i>
-              <span> <%= c.name %> </span>
+              <span class="ellip-text"> <%= c.name %> </span>
             </a>
           </li>
         <% end %>
         <li class="workplace__sidebar__channels__option">
           <a href="<%= channels_path %>">
             <i> + </i>
-            <span>Browse channels</span>
+            <span class="ellip-text">Browse channels</span>
           </a>
         </li>
         <li class="workplace__sidebar__channels__option">
           <a href="<%= new_channel_path %>">
             <i> + </i>
-            <span>Create a channel</span>
+            <span class="ellip-text">Create a channel</span>
           </a>
         </li>
       </ul>
     </details>
     <details open class="workplace__sidebar__DMs">
-      <summary>Direct Messages</summary>
+      <summary class="ellip-text">Direct Messages</summary>
       <ul>
         <% @all_DMs.each do |c| %>
           <li class="<%= params[:user_id].to_i == c.id ? "active" : "" %>">
@@ -37,14 +37,14 @@
               <i class="img-container">
                 <img src="<%= c.image %>" alt="" />
               </i>
-              <span> <%= c.username %> </span>
+              <span class="ellip-text"> <%= c.username %> </span>
             </a>
           </li>
         <% end %>
         <li class="workplace__sidebar__channels__option">
           <a href="<%= channels_path %>">
             <i> + </i>
-            <span>Add teammates</span>
+            <span class="ellip-text">Add teammates</span>
           </a>
         </li>
       </ul>

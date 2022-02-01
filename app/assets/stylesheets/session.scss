@@ -1,5 +1,6 @@
 .signin {
   width: fit-content;
+  max-width: 500px;
   margin: 0 auto;
   padding-top: 5vh;
 
@@ -31,33 +32,14 @@
     margin-bottom: 30px;
 
     input {
-      all: unset;
-      display: block;
-      width: 90vw;
-      max-width: 380px;
-      padding: 10px;
+      padding: 15px;
       margin-bottom: 10px;
-      border: 1px solid var(--main-gray);
-      border-radius: 5px;
-      font-size: 15px;
-
-      &:focus {
-        outline: 3px solid rgb(134, 200, 255);
-      }
     }
 
-    input[type="submit"] {
+    .btn {
+      width: 100%;
+      padding: 15px;
       margin-top: 20px;
-      padding: 12px 0;
-      background: var(--dark-green);
-      color: white;
-      font-size: 15px;
-      font-weight: 400;
-      text-align: center;
-
-      &:focus {
-        outline: none;
-      }
     }
   }
 

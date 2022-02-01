@@ -1,8 +1,6 @@
 <div class="header">
   <h2 class="header__title">
-    <a href="<%= channel_path @channel.id %>">
-      <%= @channel.name %>
-    </a>
+    <%= link_to @channel.name, channel_path(@channel.id) %>
   </h2>
   <div class="header__member">
     <%= link_to "link", members_of_channel_path(@channel.id) %>

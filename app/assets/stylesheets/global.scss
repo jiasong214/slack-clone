@@ -1,0 +1,135 @@
+// ######### reset #########
+@import "./reset.css";
+
+body * {
+  box-sizing: border-box !important;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+// ######### basic setting #########
+:root {
+  --dark-purple: #350d36;
+  --main-purple: #3f0e40;
+  --light-purple: rgb(82, 38, 83);
+  --point-pink: #cd2553;
+  --point-blue: #1164a3;
+  --point-green: #2bac76;
+  --dark-green: #007a5a;
+  --main-white: #ffffff;
+  --dark-white: #cfc3cf;
+  --main-gray: rgb(187, 187, 187);
+  --light-gray: rgb(233, 233, 233);
+}
+
+@import url("https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&display=swap");
+
+@import url("https://fonts.googleapis.com/css2?family=Fira+Code:wght@300;400;500;600;700&display=swap");
+
+body {
+  width: 100vw;
+  height: 100vh;
+  position: relative;
+  font-family: "Lato", sans-serif;
+  font-weight: 300;
+  letter-spacing: 0.3px;
+}
+
+// ######### common attributes #########
+.header {
+  height: 50px;
+  padding: 0 20px;
+  background: var(--main-white);
+  border-bottom: 1px solid var(--light-gray);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  .header__title {
+    font-size: 18px;
+    font-weight: 800;
+  }
+
+  .header__member {
+    width: 90px;
+    height: 28px;
+    border: 1px solid var(--light-gray);
+    border-radius: 10px;
+  }
+}
+
+.img-container {
+  display: block;
+  border-radius: 5px;
+  overflow: hidden;
+  background: var(--light-gray);
+
+  img {
+    width: 100%;
+  }
+}
+
+.btn {
+  all: unset;
+  display: inline-block;
+  padding: 10px 20px;
+  background: var(--dark-green);
+  border-radius: 5px;
+  border: 1px solid var(--light-gray);
+  color: white;
+  font-size: 15px;
+  font-weight: 400;
+  text-align: center;
+  cursor: pointer;
+}
+
+.form {
+  label {
+    display: block;
+    margin-bottom: 10px;
+    font-size: 15px;
+    font-weight: 400;
+  }
+
+  input[type="text"],
+  input[type="password"] {
+    all: unset;
+    display: inline-block;
+    width: 100%;
+    padding: 8px;
+    border: 1px solid var(--main-gray);
+    border-radius: 5px;
+
+    &:focus {
+      outline: 3px solid rgb(134, 200, 255);
+    }
+  }
+}
+
+.ellip-text {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.option-container {
+  display: flex;
+  justify-content: flex-start;
+  gap: 10px;
+  width: fit-content;
+  position: absolute;
+  right: 0;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+li:hover {
+  background: rgb(250, 250, 250);
+
+  .option-container {
+    display: block;
+  }
+}

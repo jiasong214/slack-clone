@@ -11,10 +11,10 @@
       <%= flash[:error] %>
     <% end %>
 
-    <%= form_with url: login_path, local: true do |f| %>
+    <%= form_with url: login_path, class: "form", local: true do |f| %>
       <%= f.text_field :email, placeholder: "Email address" %>
       <%= f.password_field :password, placeholder: "Password" %>
-      <%= f.submit "Login" %>
+      <%= f.submit "Login", class: "btn" %>
     <% end %>
     
   </div>

@@ -1,5 +1,4 @@
-.chats,
-.dms {
+.chats {
   height: calc(100vh - 38px);
   position: relative;
   display: grid;
@@ -60,13 +59,6 @@
         .img-container {
           width: 36px;
           height: 36px;
-          border-radius: 5px;
-          overflow: hidden;
-          background: var(--light-gray);
-
-          img {
-            width: 100%;
-          }
         }
 
         .text-container {
@@ -97,18 +89,14 @@
 
         .option-container {
           display: none;
-          padding: 0 10px;
-          height: 32px;
-          border: 1px solid var(--light-gray);
-          border-radius: 10px;
+          right: 30px;
+          border: 1px solid var(--main-gray);
+          border-radius: 5px;
+          padding: 5px 10px;
           background: white;
 
-          position: absolute;
-          top: 0;
-          right: 30px;
-
           a {
-            font-size: 14px;
+            font-size: 13px;
           }
         }
       }

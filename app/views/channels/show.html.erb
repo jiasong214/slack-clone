@@ -1,6 +1,9 @@
 <%= structure = capture do %>
+
   <section class="channels">
+
     <%= render partial: 'header', locals: {title: "Channel info"} %>
+
     <div class="channels__info-wrapper">
       <div class="channels__info">
         <div>
@@ -25,16 +28,20 @@
           <p><%= @channel.private ? "Private channel" : "Public channel" %></p>
         </div>
         <div>
+
+          <%# #show different button depens on user %>
           <% if @current_user.id != @channel.owner_id %>
             <%= link_to "Leave channel", leave_channel_path(@channel.id), method: 'patch', class: "leaveBtn" %>
           <% else %>
             <%= link_to "Edit", edit_channel_path(@channel.id), class: "editBtn" %>
             <%= link_to "Delete", channel_path(@channel.id), method: 'delete', class: "deleteBtn" %>
           <% end %>
+          
         </div>
       </div>
     </div>
   </section>
+
 <% end %>
 
 <%= render 'shared/template', :structure => structure %>
