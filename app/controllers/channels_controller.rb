@@ -30,17 +30,6 @@ class ChannelsController < ApplicationController
     @all_users = User.all
   end
 
-  def chats
-    # get chats that belongs to current channel
-    @chats = Chat.order("created_at DESC").where("channel_id = #{params[:channel_id]}")
-
-    # to get username and thigns
-    @all_users = User.all
-
-    # for the input
-    @chat = Chat.new
-  end
-
   def members
     @channel = Channel.find params[:channel_id]
     @all_users = User.all
