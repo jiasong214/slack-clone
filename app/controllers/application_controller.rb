@@ -22,15 +22,22 @@ class ApplicationController < ActionController::Base
     @all_channels = @current_user.channels
   end
 
-  # how to manage @current_channel ###################
-  # do i need to use @@current_channel ###############
-  def get_current_channel
-    @current_channel = @current_user.channels.first
-  end
+  def fetch_user_DMs
+    user_DMs = Chat.where.not(recipient_id: nil)
+      .where(user_id: @current_user.id)
+      .or(Chat.where(recipient_id: @current_user.id))
+      .pluck(:user_id, :recipient_id)
+      .uniq
 
-  def set_current_channel channel_id
-    @current_channel = Channel.find channel_id
+    @all_DMs = []
 
-    @current_channel = @current_user.channels.first unless @current_user.present?
+    user_DMs.each do |d|
+      recipient_id = @current_user.id == d[0] ? d[1] : d[0]
+
+      unless @all_DMs.include? User.find recipient_id
+        @all_DMs.push User.find recipient_id
+      end
+    end
+
   end
 end

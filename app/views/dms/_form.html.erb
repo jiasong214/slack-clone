@@ -1,0 +1,28 @@
+<div class="chats__form-container">
+  <div class="chats__form-innerbox">
+
+    <div id="editor"></div>
+
+    <%# 
+    this form sumbits to chats#create "/channels/:channel_id/chats"
+    it should go dms#create "/dms/:user_id/chats" 
+    how to make this form to work with update?
+    %>
+
+    <%= form_with model: @chat, url: "/dms/#{@recipient.id}/chats", class: "chats__form", local: true do |f| %>
+      <%= f.hidden_field :msg, class: "chats__form__input" %>
+      <button type="submit">
+        <img src="/assets/send-icon.png" alt="submit">
+      </button>
+    <% end %>
+
+    <%# <form action="/dms/ @recipient.id /chats" method="post" class="chats__form">
+      <input type="hidden" name="msg" class="chats__form__input">
+      <button type="submit">
+        <img src="/assets/send-icon.png" alt="submit">
+      </button>
+    </form> %>
+
+
+  </div>
+</div>

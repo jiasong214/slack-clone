@@ -1,5 +1,5 @@
 class ChannelsController < ApplicationController
-  before_action :check_login, :fetch_user_channels
+  before_action :check_login, :fetch_user_channels, :fetch_user_DMs
   after_action :fetch_user_channels
 
   def new

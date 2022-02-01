@@ -1,12 +1,14 @@
 class ChatsController < ApplicationController
-  before_action :check_login, :fetch_user_channels, :get_current_channel
+  before_action :check_login, :fetch_user_channels, :fetch_user_DMs
 
   def create    
     chat = Chat.new chat_params
     chat.user_id = @current_user.id
-    chat.channel_id = params[:channel_id]
+    chat.channel_id = params[:channel_id] if params[:channel_id].present?
+    chat.recipient_id = params[:channel_id] if params[:user_id].present?
     chat.save
     
+    rasie "you are in chats_controller"
     redirect_to chats_path
   end
 
@@ -15,7 +17,7 @@ class ChatsController < ApplicationController
 
     @channel = Channel.find params[:channel_id]
     # get chats that belongs to current channel
-    @chats = Chat.order("created_at DESC").where("channel_id = #{@channel.id}")
+    @chats = Chat.order("created_at DESC").where(channel_id: @channel.id)
 
     # to get username and thigns
     @all_users = User.all
@@ -27,7 +29,7 @@ class ChatsController < ApplicationController
   def edit
     @channel = Channel.find params[:channel_id];
 
-    @chats = Chat.order("created_at DESC").where("channel_id = #{@channel.id}")
+    @chats = Chat.order("created_at DESC").where(channel_id: @channel.id)
     @chat = Chat.find params[:id]
 
     @all_users = User.all

@@ -140,16 +140,6 @@ header {
     li {
       padding: 0;
 
-      i {
-        margin-right: 5px;
-      }
-
-      a {
-        display: block;
-        width: 100%;
-        padding: 7px 16px 7px 30px;
-      }
-
       &:hover {
         background: var(--dark-purple);
       }
@@ -162,6 +152,27 @@ header {
 
       &:last-child {
         margin-bottom: 20px;
+      }
+
+      a {
+        width: 100%;
+        padding: 7px 16px 7px 30px;
+        display: flex;
+        gap: 10px;
+        align-items: center;
+
+        .img-container {
+          display: inline-block;
+          width: 20px;
+          height: 20px;
+          border-radius: 5px;
+          background: var(--light-gray);
+          overflow: hidden;
+
+          img {
+            width: 100%;
+          }
+        }
       }
 
       &.workplace__sidebar__channels__option {

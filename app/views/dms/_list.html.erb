@@ -3,9 +3,7 @@
     <% @chats.each do |c| %>
       <li class=<%= @all_users.find(c.user_id).status %>>
         <div class="img-container">
-          <a href="">
             <img src="<%= @all_users.find(c.user_id).image %>" alt="" class="chats__list__item__profileImg">
-          </a>
         </div>
         <div class="text-container">
           <div>
@@ -23,8 +21,8 @@
              </p>
         </div>
         <div class="option-container">
-          <%= link_to "Edit", edit_chat_path(c.channel_id, c.id) %>
-          <%= link_to 'Delete', chat_path(c.channel_id, c.id), method: 'delete'%>
+          <%= link_to "Edit", edit_dm_path(c.recipient_id, c.id) %>
+          <%= link_to 'Delete', dm_path(c.recipient_id, c.id), method: 'delete'%>
         </div>
       </li>
     <% end %>
