@@ -22,13 +22,23 @@ class ChannelsController < ApplicationController
   end
 
   def index
-    # public channel only로 바꿔야 함
-    @channels = Channel.all
+    @channels = Channel.where("private=false")
   end
 
   def show
     @channel = Channel.find params[:channel_id]
     @all_users = User.all
+  end
+
+  def chats
+    # get chats that belongs to current channel
+    @chats = Chat.order("created_at DESC").where("channel_id = #{params[:channel_id]}")
+
+    # to get username and thigns
+    @all_users = User.all
+
+    # for the input
+    @chat = Chat.new
   end
 
   def members
@@ -77,11 +87,12 @@ class ChannelsController < ApplicationController
     @channel = Channel.find params[:channel_id]
 
     # user can join the table only when they haven't
-    # unless @channel.users.find(@current_user.id).exists?
+    unless @channel.users.include?(@current_user)
       @channel.users << @current_user
-    # end
+    end
 
-    # 현재 채널로 리다이렉트 해줘야 함
+    # need to redirect to current channel 
+    # "/chats?channel_id=?" -> how?
     redirect_to chats_path
   end
 
@@ -91,6 +102,19 @@ class ChannelsController < ApplicationController
     @channel.users.delete @current_user
 
     redirect_to chats_path
+  end
+
+  def invite
+    # '/channels/:channel_id/invite
+    @channel = Channel.find params[:channel_id]
+
+    ## 1. find a user
+    # user = User.find params[???]
+
+    ## 2. chech if user is already joined
+
+    ## 3. add user in join table
+    # @channel.users << user
   end
 
   def channel_params

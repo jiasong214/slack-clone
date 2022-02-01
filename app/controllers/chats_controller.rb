@@ -11,19 +11,19 @@ class ChatsController < ApplicationController
   end
 
   def index
-    # if a user clicks channel name, update @current_channel
-    if params[:channel_id].present?
-      set_current_channel params[:channel_id]
-    end
+    # # if a user clicks channel name, update @current_channel
+    # if params[:channel_id].present?
+    #   set_current_channel params[:channel_id]
+    # end
 
-    # get chats that belongs to current channel
-    @chats = Chat.order("created_at DESC").where("channel_id = #{@current_channel.id}")
+    # # get chats that belongs to current channel
+    # @chats = Chat.order("created_at DESC").where("channel_id = #{@current_channel.id}")
 
-    # to get username and thigns
-    @all_users = User.all
+    # # to get username and thigns
+    # @all_users = User.all
 
-    # for the input
-    @chat = Chat.new
+    # # for the input
+    # @chat = Chat.new
   end
 
   def edit

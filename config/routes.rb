@@ -6,6 +6,7 @@ Rails.application.routes.draw do
   delete '/login' => 'session#destroy'
 
   get '/channels/:channel_id/members' => 'channels#members', as: "members_of_channel"
+  get '/channels/:channel_id/chats' => 'channels#chats', as: "chats_of_channel"
   patch '/channels/:channel_id/join' => 'channels#join', as: "join_channel"
   patch '/channels/:channel_id/leave' => 'channels#leave', as: "leave_channel"
 

@@ -203,22 +203,35 @@
     .channels__members {
       @extend .channels__info;
 
-      li > a {
+      li {
         display: block;
         padding: 10px 20px;
         display: flex;
         justify-content: flex-start;
         gap: 10px;
-        align-items: center;
+        position: relative;
 
         &:hover {
           background: rgb(250, 250, 250);
+
+          .option-container {
+            display: block;
+          }
+        }
+
+        &:first-child {
+          a {
+            @extend li;
+            align-items: center;
+            padding: 0;
+          }
         }
 
         .img-container {
           width: 36px;
           height: 36px;
           border-radius: 5px;
+          background: var(--light-gray);
           overflow: hidden;
 
           img {
@@ -234,7 +247,7 @@
           }
 
           p:last-child {
-            font-size: 15px;
+            font-size: 14px;
             color: gray;
           }
         }
@@ -242,6 +255,27 @@
         &.addBtn .text-container {
           font-size: 15px;
           font-weight: 600;
+        }
+
+        .option-container {
+          display: none;
+          position: absolute;
+          right: 20px;
+          top: 50%;
+          transform: translateY(-50%);
+
+          a {
+            padding: 5px 10px;
+            background: var(--dark-green);
+            border-radius: 5px;
+            color: white;
+            font-size: 13px;
+            font-weight: 400;
+
+            &.dmBtn {
+              background: var(--point-pink);
+            }
+          }
         }
       }
     }

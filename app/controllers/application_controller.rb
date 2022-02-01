@@ -22,13 +22,15 @@ class ApplicationController < ActionController::Base
     @all_channels = @current_user.channels
   end
 
+  # how to manage @current_channel ###################
+  # do i need to use @@current_channel ###############
   def get_current_channel
-    @current_channel = Channel.first
+    @current_channel = @current_user.channels.first
   end
 
   def set_current_channel channel_id
     @current_channel = Channel.find channel_id
 
-    @current_channel = Channel.first unless @current_user.present?
+    @current_channel = @current_user.channels.first unless @current_user.present?
   end
 end

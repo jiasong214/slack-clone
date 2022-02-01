@@ -1,7 +1,35 @@
 <%= structure = capture do %>
   <section class="users">
     <%= render partial: 'header', locals: {title: "Edit a profile"} %>
-    <%= render partial: 'form' %>
+    
+    <%= form_with model: @current_user, class: "users__form", local: true do |f| %>
+      <div class="left-box">
+        <div>
+          <%= f.label :username %>
+          <%= f.text_field :username %>
+        </div>
+        <div>
+          <%= f.label :title %>
+          <%= f.text_field :title %>
+          <p>Let people know what you do at GA Immersive Students.</p>
+        </div>
+        <div>
+          <%= f.label :password, "Password" %>
+          <%= f.password_field :password %>
+        </div>
+      </div>
+      <div class="right-box">
+        <%= f.label :image, "Profile photo" %>
+        <div class="img-container">
+          <img src="" alt="" >
+        </div>
+        <%= f.file_field :image %>
+      </div>
+      <div class="btn-box">
+        <%= link_to "Cancel", user_path(@current_user.id) %>
+        <%= f.submit %>
+      </div>
+    <% end %>
   </section>
 <% end %>
 

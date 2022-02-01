@@ -16,15 +16,16 @@
           </li>
           <% @channel.users.each do |u| %>
             <li>
-              <a href="">
-                <div class="img-container">
-                  <img src="<%= u.image %>" alt="">
-                </div>
-                <div class="text-container">
-                  <p> <%= u.username %> </p>
-                  <p> create user "what i do" </p>
-                </div>
-              </a>
+              <div class="img-container">
+                <img src="<%= u.image %>" alt="">
+              </div>
+              <div class="text-container">
+                <p> <%= u.username %> </p>
+                <p> <%= u.title %> </p>
+              </div>
+              <div class="option-container">
+                <%= link_to "DM", root_path, class: "dmBtn" %>
+              </div>
             </li>
           <% end %>
         </ul>
@@ -36,15 +37,17 @@
         <ul>
           <% @all_users.each do |u| %>
             <li>
-              <a href="">
-                <div class="img-container">
-                  <img src="<%= u.image %>" alt="">
-                </div>
-                <div class="text-container">
-                  <p> <%= u.username %> </p>
-                  <p> create user "what i do" </p>
-                </div>
-              </a>
+              <div class="img-container">
+                <img src="<%= u.image %>" alt="">
+              </div>
+              <div class="text-container">
+                <p> <%= u.username %> </p>
+                <p> <%= u.title %> </p>
+              </div>
+              <div class="option-container">
+                <%= link_to "Invite", root_path, method: 'patch', class: "inviteBtn" %>
+                <%= link_to "DM", root_path, class: "dmBtn" %>
+              </div>
             </li>
           <% end %>
         </ul>

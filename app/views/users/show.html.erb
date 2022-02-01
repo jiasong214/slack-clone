@@ -7,6 +7,7 @@
         <img src="<%= @current_user.image %>" alt="">
       </div>
       <h2 class="username"><%= @current_user.username %></h2>
+      <p class="title"><%= @current_user.title %></p>
       <a href="<%= edit_user_path @current_user.id %>" class="editBtn">
         <i><img src="/assets/edit-icon.png" alt="edit icon"></i>
         <span>Edit profile</span>
@@ -25,8 +26,10 @@
           <p class="email"><%= @current_user.email %></p>
         </div>
       </div>
-      <%= link_to "Logout", login_path, method: 'delete', class: "logoutBtn" %>
-      <%= link_to "Delete the account", user_path, method: 'delete', class: "deleteBtn" %>
+      <div class="option-container">
+        <%= link_to "Logout", login_path, method: 'delete', class: "logoutBtn" %>
+        <%= link_to "Delete the account", user_path, method: 'delete', class: "deleteBtn" %>
+      </div>
     </div>
   </section>
 <% end %>

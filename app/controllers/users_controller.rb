@@ -24,7 +24,7 @@ class UsersController < ApplicationController
   end
 
   def update
-    if params[:id] != @current_user.id
+    if params[:id].to_i != @current_user.id
       redirect_to login_path
       return
     end
@@ -36,12 +36,13 @@ class UsersController < ApplicationController
     end
   end
 
+  # how to handle destroy not delete user id and username?
   def destroy
-    @current_user.update(
-      image: "",
-      password: "",
-      email: ""
-    )
+    # @current_user.update(
+    #   image: "",
+    #   password: "",
+    #   email: ""
+    # )
     # User.destroy @current_user.id
 
 
@@ -49,6 +50,6 @@ class UsersController < ApplicationController
   end
 
   def user_params
-    params.require(:user).permit(:username, :password, :email)
+    params.require(:user).permit(:username, :password, :email, :title)
   end
 end

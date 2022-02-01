@@ -6,6 +6,7 @@ jia = User.create!(
   username: "jia",
   password: "123123",
   email: "jiasong214@gmail.com",
+  title: "this is jia's title",
   image: "https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png"
 )
 
@@ -20,6 +21,7 @@ mimi = User.create!(
   username: "mimi",
   password: "123123",
   email: "mimi@gmail.com",
+  title: "the cutest cat in the world",
   image: "https://i.kym-cdn.com/entries/icons/original/000/026/638/cat.jpg"
 )
 

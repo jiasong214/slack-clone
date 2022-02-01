@@ -3,6 +3,7 @@
 
     <div id="editor"></div>
 
+    <%# <%= form_with model: @chat, class: "chats__form", remote: true do |f| %> %>
     <%= form_with model: @chat, class: "chats__form", local: true do |f| %>
       <%= f.hidden_field :msg, class: "chats__form__input" %>
       <button type="submit">
