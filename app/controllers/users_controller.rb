@@ -1,7 +1,6 @@
 class UsersController < ApplicationController
   before_action :check_login, :fetch_user_channels, except: [:new, :create]
 
-
   def new
     @user = User.new
   end
@@ -29,7 +28,16 @@ class UsersController < ApplicationController
       return
     end
 
-    if @current_user.update user_params
+    ###################### 작동안됨
+    update = @current_user.update(
+      username: params[:user][:username],
+      title: params[:user][:title],
+      image: params[:user][:image]
+    )
+
+    raise 'hell'
+
+    if update
       redirect_to user_path @current_user.id
     else
       render :edit
@@ -38,15 +46,24 @@ class UsersController < ApplicationController
 
   # how to handle destroy not delete user id and username?
   def destroy
-    # @current_user.update(
-    #   image: "",
-    #   password: "",
-    #   email: ""
-    # )
-    # User.destroy @current_user.id
+    if params[:id].to_i != @current_user.id
+      redirect_to login_path
+      return
+    end
 
+    ###################### 작동안됨
+    update = @current_user.update(
+      status: "disabled"
+    )
 
-    redirect_to login_path
+    raise 'hell'
+    
+
+    if update 
+      redirect_to login_path
+    else
+      redirect_to user_path @current_user.id
+    end
   end
 
   def user_params

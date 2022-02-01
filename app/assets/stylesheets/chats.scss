@@ -51,6 +51,11 @@
           }
         }
 
+        &.disabled {
+          opacity: 0.2;
+          pointer-events: none;
+        }
+
         .img-container {
           width: 36px;
           height: 36px;

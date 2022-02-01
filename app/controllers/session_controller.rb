@@ -6,6 +6,14 @@ class SessionController < ApplicationController
   def create
     user = User.find_by email: params[:email]
 
+    # 1. check if its deleted user
+    if user.status == 'disabled'
+      flash[:error] = "Deleted user"
+      redirect_to login_path
+      return
+    end
+
+    # 2. check if email and password is matched
     if user.present? && user.authenticate(params[:password])
       # save user id in session
       session[:user_id] = user.id

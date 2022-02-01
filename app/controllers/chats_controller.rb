@@ -11,8 +11,11 @@ class ChatsController < ApplicationController
   end
 
   def index
+    params[:channel_id] = @current_user.channels.first.id unless params[:channel_id].present?
+
+    @channel = Channel.find params[:channel_id]
     # get chats that belongs to current channel
-    @chats = Chat.order("created_at DESC").where("channel_id = #{params[:channel_id]}")
+    @chats = Chat.order("created_at DESC").where("channel_id = #{@channel.id}")
 
     # to get username and thigns
     @all_users = User.all
@@ -22,7 +25,9 @@ class ChatsController < ApplicationController
   end
 
   def edit
-    @chats = Chat.order("created_at DESC").where("channel_id = #{params[:channel_id]}")
+    @channel = Channel.find params[:channel_id];
+
+    @chats = Chat.order("created_at DESC").where("channel_id = #{@channel.id}")
     @chat = Chat.find params[:id]
 
     @all_users = User.all

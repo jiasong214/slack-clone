@@ -1,7 +1,7 @@
 <div class="chats__list-container">
   <ul class="chats__list">
     <% @chats.each do |c| %>
-      <li>
+      <li class=<%= @all_users.find(c.user_id).status %>>
         <div class="img-container">
           <a href="">
             <img src="<%= @all_users.find(c.user_id).image %>" alt="" class="chats__list__item__profileImg">
@@ -14,7 +14,13 @@
             </a>
             <span class="time"> <%= c.created_at %> </span>
           </div>
-          <p class="msg"> <%= c.msg.html_safe %> </p>
+            <p class="msg">
+              <% if @all_users.find(c.user_id).status == 'active' %>
+                <%= c.msg.html_safe %>
+              <% else %>
+                This is message from deleted user
+              <% end %>
+             </p>
         </div>
         <div class="option-container">
           <%= link_to "Edit", edit_chat_path(c.channel_id, c.id) %>

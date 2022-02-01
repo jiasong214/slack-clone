@@ -8,7 +8,7 @@
       <% @channels.each do |c| %>
         <li class="channels__list__item">
           <div class="text-container">
-            <a href="/chats?channel_id=<%= c.id %>">
+            <a href="<%= chats_path c.id %>">
               <div>
                 <i>#</i>
                 <h3 class="title"><%= c.name %></h3>

@@ -4,6 +4,7 @@ class CreateChats < ActiveRecord::Migration[5.2]
       t.text :msg
       t.integer :user_id
       t.integer :channel_id
+      t.integer :recipient_id
 
       t.timestamps
     end

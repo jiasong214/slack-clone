@@ -30,11 +30,6 @@ class ChannelsController < ApplicationController
     @all_users = User.all
   end
 
-  def members
-    @channel = Channel.find params[:channel_id]
-    @all_users = User.all
-  end
-
   def edit
     @channel = Channel.find params[:channel_id]
 
@@ -69,7 +64,12 @@ class ChannelsController < ApplicationController
 
     Channel.destroy channel.id
 
-    redirect_to chats_path
+    redirect_to chats_path(@current_user.channels.first)
+  end
+
+  def members
+    @channel = Channel.find params[:channel_id]
+    @all_users = User.all
   end
 
   def join
@@ -80,30 +80,30 @@ class ChannelsController < ApplicationController
       @channel.users << @current_user
     end
 
-    # need to redirect to current channel 
-    # "/chats?channel_id=?" -> how?
-    redirect_to chats_path
+    redirect_to chats_path(@channel.id)
   end
 
   def leave
     @channel = Channel.find params[:channel_id]
 
-    @channel.users.delete @current_user
+    if @channel.users.include?(@current_user)
+      @channel.users.delete @current_user
+    end
 
-    redirect_to chats_path
+    redirect_to chats_path(@current_user.channels.first)
   end
 
   def invite
-    # '/channels/:channel_id/invite
+    # 1. find a channel
     @channel = Channel.find params[:channel_id]
 
-    ## 1. find a user
-    # user = User.find params[???]
+    # 2. find a user
+    user = User.find params[:user_id]
 
-    ## 2. chech if user is already joined
-
-    ## 3. add user in join table
-    # @channel.users << user
+    ## 3. chech if user is already joined
+    unless @channel.users.include?(user)
+      @channel.users << user
+    end
   end
 
   def channel_params

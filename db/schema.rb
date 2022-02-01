@@ -33,6 +33,7 @@ ActiveRecord::Schema.define(version: 2022_01_30_115223) do
     t.text "msg"
     t.integer "user_id"
     t.integer "channel_id"
+    t.integer "recipient_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -43,6 +44,7 @@ ActiveRecord::Schema.define(version: 2022_01_30_115223) do
     t.text "email"
     t.text "title"
     t.text "image"
+    t.integer "status", default: 0
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

@@ -25,6 +25,15 @@ mimi = User.create!(
   image: "https://i.kym-cdn.com/entries/icons/original/000/026/638/cat.jpg"
 )
 
+hello = User.create!(
+  username: "test",
+  password: "123123",
+  email: "test@gmail.com",
+  title: "deleted user",
+  status: "disabled",
+  image: "https://i.kym-cdn.com/entries/icons/original/000/026/638/cat.jpg"
+)
+
 Channel.destroy_all
 first_channel = Channel.create!(
   name: "Jia's public channel",
@@ -56,8 +65,14 @@ Chat.create!(
   user_id: mimi.id,
   channel_id: second_channel.id
 )
+Chat.create!(
+  msg: "message from deleted user",
+  user_id: hello.id,
+  channel_id: first_channel.id
+)
 
 # jia is joined in both channels
 jia.channels << first_channel << second_channel
 nico.channels << first_channel
+hello.channels << first_channel
 mimi.channels << second_channel
