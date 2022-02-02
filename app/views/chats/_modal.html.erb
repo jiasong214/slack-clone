@@ -4,13 +4,17 @@
     <button class="closeBtn">&times;</button>
     <div class="modal__title">
       <h2 class="title">
-        <i><%= @channel.private ? image_tag('/assets/lock-icon.svg') : '#' %></i>
+        <% if @channel.private? %>
+          <i><%= image_tag('/assets/lock-icon-black.svg')%></i>
+        <% end %>
         <span><%= @channel.name %></span>
       </h2>
       <div class="tabMenu">
         <button class="aboutBtn active" data-id="1">About</button>
         <button class="memberBtn" data-id="2">Members</button>
-        <button class="inviteBtn" data-id="3">Invite</button>
+        <% if @channel.user_ids.include? @current_user.id %>
+          <button class="inviteBtn" data-id="3">Invite</button>
+        <% end %>
       </div>
     </div>
     <div class="modal__contents">
@@ -69,37 +73,45 @@
           </li>
         <% end %>
         <% @channel.users.each do |u| %>
-          <li>
-            <div class="img-container">
-              <%= cl_image_tag u.image, alt: "user image" %>
-            </div>
-            <div class="text-container">
-              <p> <%= u.username %> </p>
-              <p> <%= u.title %> </p>
-            </div>
-            <div class="option-container">
-              <%= link_to "DM", dms_path(u.id), class: "btn" %>
-            </div>
-          </li>
+          <% unless u.status != "disabled" %>
+            <li>
+              <%= link_to user_path(u.id) do %>
+                <div class="img-container">
+                  <%= cl_image_tag u.image, alt: "user image" %>
+                </div>
+                <div class="text-container">
+                  <p> <%= u.username %> </p>
+                  <p> <%= u.title %> </p>
+                </div>
+              <% end %>
+              <div class="option-container">
+                <%= link_to "DM", dms_path(u.id), class: "btn" %>
+              </div>
+            </li>
+          <% end %>
         <% end %>
       </ul>
 
       <%# all users tab %>
       <ul class="invite" data-id="3">
         <% @all_users.each do |u| %>
-          <li>
-            <div class="img-container">
-              <%= cl_image_tag  u.image, alt: "user image" %>
-            </div>
-            <div class="text-container">
-              <p> <%= u.username %> </p>
-              <p> <%= u.title %> </p>
-            </div>
-            <div class="option-container">
-              <%= link_to "Invite", invite_channel_path(@channel.id, u.id), method: 'patch', class: "btn" %>
-              <%= link_to "DM", dms_path(u.id), class: "btn" %>
-            </div>
-          </li>
+          <% unless @channel.user_ids.include? u.id || u.status != "disabled" %>
+            <li>
+              <%= link_to user_path(u.id) do %>
+                <div class="img-container">
+                  <%= cl_image_tag  u.image, alt: "user image" %>
+                </div>
+                <div class="text-container">
+                  <p> <%= u.username %> </p>
+                  <p> <%= u.title %> </p>
+                </div>
+              <% end %>
+              <div class="option-container">
+                <%= link_to "Invite", invite_channel_path(@channel.id, u.id), method: 'patch', class: "btn" %>
+                <%= link_to "DM", dms_path(u.id), class: "btn" %>
+              </div>
+            </li>
+          <% end %>
         <% end %>
       </ul>
 

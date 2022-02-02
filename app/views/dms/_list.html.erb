@@ -1,6 +1,8 @@
 <div class="chats__list-container">
   <ul class="chats__list">
+  <% if @chats.count != 0 %>
     <% @current_date = @chats.first.created_at.strftime("%A, %B %e") %>
+    
     <% @chats.each_with_index do |c, index| %>
       <li class=<%= @all_users.find(c.user_id).status %>>
         <div class="img-container">
@@ -34,5 +36,6 @@
       <% end %>
 
     <% end %>
+  <% end %>
   </ul>
 </div>

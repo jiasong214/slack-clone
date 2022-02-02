@@ -1,6 +1,12 @@
 class ChatsController < ApplicationController
   before_action :check_login, :fetch_user_channels, :fetch_user_DMs
 
+  def redirect
+    channel = @current_user.channels.first
+
+    redirect_to chats_path channel.id
+  end
+
   def create    
     chat = Chat.new chat_params
     chat.user_id = @current_user.id
@@ -11,8 +17,6 @@ class ChatsController < ApplicationController
   end
 
   def index
-    params[:channel_id] = @current_user.channels.first.id unless params[:channel_id].present?
-
     @channel = Channel.find params[:channel_id]
     # get chats that belongs to current channel
     @chats = Chat.order("created_at DESC").where(channel_id: @channel.id)

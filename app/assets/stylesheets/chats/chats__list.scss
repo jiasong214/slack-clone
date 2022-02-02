@@ -22,6 +22,11 @@
         pointer-events: none;
       }
 
+      &.first-msg {
+        font-weight: 400;
+        color: gray;
+      }
+
       .img-container {
         width: 36px;
         height: 36px;

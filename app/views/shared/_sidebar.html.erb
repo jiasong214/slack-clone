@@ -33,21 +33,23 @@
     <details open class="sidebar__DMs">
       <summary class="ellip-text">Direct Messages</summary>
       <ul>
-        <% @all_DMs.each do |c| %>
-          <li class="<%= params[:user_id].to_i == c.id ? "active" : "" %>">
-            <a href="<%= dms_path c.id %>">
-              <i class="img-container">
-                <img src="<%= c.image %>" alt="" />
-              </i>
-              <span class="ellip-text"> <%= c.username %> </span>
-            </a>
-          </li>
+        <% @all_DMs.each_with_index do |c, index| %>
+          <% if index < 10 %>
+            <li class="<%= params[:user_id].to_i == c.id ? "active" : "" %>">
+              <a href="<%= dms_path c.id %>">
+                <i class="img-container">
+                  <img src="<%= c.image %>" alt="" />
+                </i>
+                <span class="ellip-text"> <%= c.username %> </span>
+              </a>
+            </li>
+          <% end %>
         <% end %>
         <li class="channels__option">
-          <a href="<%= channels_path %>">
+          <%= link_to users_path do %>
             <i> + </i>
             <span class="ellip-text">Add teammates</span>
-          </a>
+          <% end %>
         </li>
       </ul>
     </details>

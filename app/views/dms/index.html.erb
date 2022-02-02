@@ -3,10 +3,13 @@
 <%= render :layout => './shared/template' do %>
   <section class="dms chats">
     <div class="header">
-      <div class="img-container">
-        <img src="<%= @recipient.image %>" alt="" />
-      </div>
-      <h2 class="header__title"><%= @recipient.username %></h2>
+      <%= link_to user_path(@recipient.id) do %>
+        <div class="img-container">
+          <img src="<%= @recipient.image %>" alt="" />
+        </div>
+        <h2 class="header__title"><%= @recipient.username %></h2>
+        <img class="arrow" src="/assets/arrow-icon.png" alt="">
+      <% end %>
     </div>
     
     <%= render partial: 'list' %>

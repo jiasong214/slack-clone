@@ -1,0 +1,23 @@
+<%= render :layout => './shared/template' do %>
+  <section class="users">
+    <%= render partial: 'header', locals: {title: "Send a DM"} %>
+    
+    <ul class="users__list">
+      <% @users.each do |c| %>
+        <% unless c.status == "disabled" %>
+          <li>
+            <%= link_to dms_path(c.id) do %>
+              <div class="img-container">
+                <%= cl_image_tag c.image, alt: "user image" %>
+              </div>
+              <div class="text-container">
+                <h3 class="username"><%= c.username %></h3>
+                <p class="title"><%= c.title %></p>
+              </div>
+            <% end %>
+          </li>
+        <% end %>
+      <% end %>
+    </ul>
+  </section>
+<% end %>

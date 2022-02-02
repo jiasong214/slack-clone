@@ -4,31 +4,35 @@
 
     <div class="users__profile">
       <div class="img-container">
-      <%= cl_image_tag @current_user.image, alt: "user image" %>
+      <%= cl_image_tag @user.image, alt: "user image" %>
       </div>
-      <h2 class="username"><%= @current_user.username %></h2>
-      <p class="title"><%= @current_user.title %></p>
-      <a href="<%= edit_user_path @current_user.id %>" class="editBtn">
-        <i><img src="/assets/edit-icon.png" alt="edit icon"></i>
-        <span>Edit profile</span>
-      </a>
+      <h2 class="username"><%= @user.username %></h2>
+      <p class="title"><%= @user.title %></p>
+
+      <% if @current_user.id == @user.id %>
+        <%= link_to edit_user_path(@user.id), class: 'editBtn' do %>
+          <i><img src="/assets/edit-icon.png" alt="edit icon"></i>
+          <span>Edit profile</span>
+        <% end %>
+      <% end %>
+
       <div class="profile-innerbox">
         <div>
           <p>Display name</p>
-          <p class="displayName"><%= @current_user.username %></p>
-        </div>
-        <div>
-          <p>Local time</p>
-          <p>asdfsdf</p>
+          <p class="displayName"><%= @user.username %></p>
         </div>
         <div>
           <p>Email address</p>
-          <p class="email"><%= @current_user.email %></p>
+          <p class="email"><%= @user.email %></p>
         </div>
       </div>
       <div class="option-container">
-        <%= link_to "Logout", login_path, method: 'delete', class: "btn" %>
-        <%= link_to "Delete the account", user_path, method: 'delete', class: "btn" %>
+        <% if @current_user.id == @user.id %>
+          <%= link_to "Logout", login_path, method: 'delete', class: "btn" %>
+          <%= link_to "Delete the account", user_path, method: 'delete', class: "btn" %>
+        <% else %>
+          <%= link_to "Send a DM", dms_path(@user.id), class: "btn" %>
+        <% end %>
       </div>
     </div>
   </section>

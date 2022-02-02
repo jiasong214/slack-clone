@@ -1,6 +1,11 @@
 <div class="header">
-  <h2 class="header__title">
-    <div class="channel__infoBtn"><%= @channel.name %></div>
+  <h2 class="header__title channel__infoBtn">
+    <% if @channel.private? %>
+      <i><%= image_tag('/assets/lock-icon-black.svg')%></i>
+    <% end %>
+    <span><%= @channel.name %></span>
+    <img class="arrow" src="/assets/arrow-icon.png" alt="">
+
   </h2>
   <div class="header__member">
     <% 3.times do |i| %>

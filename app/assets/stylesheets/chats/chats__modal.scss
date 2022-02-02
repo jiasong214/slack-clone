@@ -44,7 +44,7 @@
       border-bottom: 1px solid var(--main-gray);
 
       .title {
-        font-size: 22px;
+        font-size: 20px;
         font-weight: 600;
         margin-bottom: 20px;
       }
@@ -125,11 +125,6 @@
 
         &.members > li,
         &.invite > li {
-          display: block;
-          padding: 10px 20px;
-          display: flex;
-          justify-content: flex-start;
-          gap: 10px;
           position: relative;
 
           &:hover .option-container {
@@ -137,8 +132,17 @@
           }
 
           &.addBtn {
+            padding: 10px 20px;
+            display: flex;
+            justify-content: flex-start;
+            gap: 10px;
             align-items: center;
             cursor: pointer;
+
+            .img-container {
+              width: 36px;
+              height: 36px;
+            }
 
             .text-container {
               font-size: 15px;
@@ -146,21 +150,29 @@
             }
           }
 
-          .img-container {
-            width: 36px;
-            height: 36px;
-          }
+          > a {
+            display: block;
+            padding: 10px 20px;
+            display: flex;
+            justify-content: flex-start;
+            gap: 10px;
 
-          .text-container {
-            p:first-child {
-              font-size: 15px;
-              font-weight: 600;
-              margin-bottom: 5px;
+            .img-container {
+              width: 36px;
+              height: 36px;
             }
 
-            p:last-child {
-              font-size: 14px;
-              color: gray;
+            .text-container {
+              p:first-child {
+                font-size: 15px;
+                font-weight: 600;
+                margin-bottom: 5px;
+              }
+
+              p:last-child {
+                font-size: 14px;
+                color: gray;
+              }
             }
           }
 

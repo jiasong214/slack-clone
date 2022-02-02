@@ -2,7 +2,7 @@
   <section class="users">
     <%= render partial: 'header', locals: {title: "Edit a profile"} %>
     
-    <%= form_with model: @current_user, html: { multipart: true }, class: "form", local: true do |f| %>
+    <%= form_with model: @user, html: { multipart: true }, class: "form", local: true do |f| %>
       <div class="left-box">
         <div>
           <%= f.label :username %>
@@ -17,12 +17,12 @@
       <div class="right-box">
         <%= f.label :image, "Profile photo" %>
         <div class="img-container">
-          <img src="" alt="" >
+          <%= cl_image_tag @user.image, alt: "user image" %>
         </div>
         <%= f.file_field :image %>
       </div>
       <div class="option-container">
-        <%= link_to "Cancel", user_path(@current_user.id), class: 'btn' %>
+        <%= link_to "Cancel", user_path(@user.id), class: 'btn' %>
         <%= f.submit "Submit", class: 'btn' %>
       </div>
     <% end %>

@@ -21,5 +21,17 @@
   .right-box > .img-container {
     width: 192px;
     height: 192px;
+    margin-bottom: 10px;
+  }
+
+  .option-container {
+    position: static;
+    top: 0;
+    transform: initial;
+
+    a {
+      background: white;
+      color: black;
+    }
   }
 }
