@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
-  root to: 'channels#index'
+  # root to: "chats#index"
+  root to: "channels#index"
+
 
   # login, logout
   get '/login' => 'session#new'

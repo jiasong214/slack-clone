@@ -1,0 +1,54 @@
+.chats__form-container {
+  height: 140px;
+  padding: 0 20px;
+
+  .chats__form-innerbox {
+    border: 1px solid var(--light-gray);
+    border-radius: 10px;
+    overflow: hidden;
+
+    .ql-toolbar {
+      border: none;
+      background: rgb(250, 250, 250);
+
+      button {
+        opacity: 0.5;
+        margin-right: 3px;
+
+        &.ql-active {
+          opacity: 1;
+          background: var(--light-gray);
+          border-radius: 5px;
+        }
+      }
+    }
+
+    .ql-container {
+      border: none;
+      font-size: 15px;
+    }
+
+    .chats__form {
+      padding: 0 10px 10px;
+
+      button {
+        all: unset;
+        display: block;
+        width: 18px;
+        height: 18px;
+        margin-left: auto;
+        margin-right: 10px;
+
+        opacity: 0.3;
+
+        &:hover {
+          opacity: 1;
+        }
+
+        img {
+          width: 100%;
+        }
+      }
+    }
+  }
+}

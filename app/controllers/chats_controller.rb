@@ -51,10 +51,6 @@ class ChatsController < ApplicationController
     end
   end
 
-  def show
-    # delete method comes here
-    raise "why delete here?" 
-  end
 
   def destroy
     chat = Chat.find params[:id]

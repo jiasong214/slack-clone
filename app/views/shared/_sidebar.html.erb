@@ -8,16 +8,12 @@
       <ul>
         <% @all_channels.each do |c| %>
           <li class="<%= params[:channel_id].to_i == c.id ? "active" : "" %>">
-            <a href="/channels/<%= c.id %>/chats">
+           <%= link_to chats_path(c.id) do %>
               <i> 
-                <% if c.private? %>
-                  <img src="/assets/lock-icon.svg">
-                <% else %>
-                  #
-                <% end %>
+                <%= c.private ? image_tag('/assets/lock-icon.svg') : '#' %>
               </i>
               <span class="ellip-text"> <%= c.name %> </span>
-            </a>
+            <% end %>
           </li>
         <% end %>
         <li class="channels__option">

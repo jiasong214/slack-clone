@@ -1,0 +1,185 @@
+.modal-container {
+  display: none;
+
+  &.active {
+    display: block;
+  }
+
+  .modal-background {
+    width: 100vw;
+    height: 100vh;
+    position: fixed;
+    top: 0;
+    left: 0;
+    background: rgba(0, 0, 0, 0.5);
+  }
+
+  dialog.modal {
+    padding: 0;
+    display: block;
+    border-radius: 10px;
+    border: none;
+    width: 90vw;
+    max-width: 580px;
+    height: 85vh;
+    position: fixed;
+    top: 50%;
+    left: 0;
+    transform: translateY(-50%);
+    z-index: 100;
+    overflow: hidden;
+
+    .closeBtn {
+      all: unset;
+      position: absolute;
+      right: 20px;
+      top: 10px;
+      font-size: 28px;
+      cursor: pointer;
+    }
+
+    .modal__title {
+      padding: 20px 28px 0;
+      padding-bottom: 0;
+      border-bottom: 1px solid var(--main-gray);
+
+      .title {
+        font-size: 22px;
+        font-weight: 600;
+        margin-bottom: 20px;
+      }
+
+      .tabMenu {
+        button {
+          all: unset;
+          padding-bottom: 10px;
+          margin-right: 20px;
+          font-size: 13px;
+          color: gray;
+          font-weight: 400;
+          cursor: pointer;
+
+          &.active {
+            border-bottom: 2px solid var(--dark-green);
+            color: black;
+          }
+        }
+      }
+    }
+
+    .modal__contents {
+      width: 100%;
+      height: calc(100% - 90px);
+      padding: 16px 28px;
+      background: var(--light-gray);
+      overflow: scroll;
+
+      ul {
+        border-radius: 5px;
+        border: 1px solid var(--main-gray);
+        display: none;
+        background: white;
+        overflow: hidden;
+
+        &.active {
+          display: block;
+        }
+
+        &.about > li {
+          padding: 20px;
+          border-bottom: 1px solid rgb(221, 221, 221);
+
+          &:last-child {
+            border: none;
+
+            &:hover {
+              background: none;
+            }
+          }
+
+          &.membersBtn {
+            cursor: pointer;
+          }
+
+          p:first-child {
+            font-size: 15px;
+            font-weight: 400;
+            margin-bottom: 5px;
+          }
+
+          p:nth-child(2) {
+            font-weight: 300;
+          }
+
+          a {
+            font-size: 15px;
+            font-weight: 400;
+            color: var(--point-pink);
+
+            &.editBtn {
+              color: black;
+              margin-right: 10px;
+            }
+          }
+        }
+
+        &.members > li,
+        &.invite > li {
+          display: block;
+          padding: 10px 20px;
+          display: flex;
+          justify-content: flex-start;
+          gap: 10px;
+          position: relative;
+
+          &:hover .option-container {
+            display: block;
+          }
+
+          &.addBtn {
+            align-items: center;
+            cursor: pointer;
+
+            .text-container {
+              font-size: 15px;
+              font-weight: 600;
+            }
+          }
+
+          .img-container {
+            width: 36px;
+            height: 36px;
+          }
+
+          .text-container {
+            p:first-child {
+              font-size: 15px;
+              font-weight: 600;
+              margin-bottom: 5px;
+            }
+
+            p:last-child {
+              font-size: 14px;
+              color: gray;
+            }
+          }
+
+          .option-container {
+            display: none;
+            right: 20px;
+
+            a {
+              padding: 5px 10px;
+              font-size: 13px;
+              background: var(--point-pink);
+
+              &:last-child {
+                background: var(--dark-green);
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

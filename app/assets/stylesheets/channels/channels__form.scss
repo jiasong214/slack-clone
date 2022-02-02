@@ -1,0 +1,33 @@
+.channels__form {
+  width: 100%;
+  max-width: 520px;
+  padding: 0 20px;
+
+  > p {
+    margin: 10px 0 30px;
+    font-size: 15px;
+    color: gray;
+    font-weight: 400;
+  }
+
+  > div {
+    margin-bottom: 30px;
+
+    p {
+      margin-top: 5px;
+      font-size: 13px;
+      color: gray;
+      font-weight: 400;
+    }
+
+    &.private {
+      display: flex;
+      justify-content: space-between;
+      gap: 20px;
+
+      input[type="checkbox"] {
+        transform: scale(1.3);
+      }
+    }
+  }
+}

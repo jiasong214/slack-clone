@@ -1,0 +1,108 @@
+<div class="modal-container">
+  <div class="modal-background"></div>
+  <dialog open class="modal">
+    <button class="closeBtn">&times;</button>
+    <div class="modal__title">
+      <h2 class="title">
+        <i><%= @channel.private ? image_tag('/assets/lock-icon.svg') : '#' %></i>
+        <span><%= @channel.name %></span>
+      </h2>
+      <div class="tabMenu">
+        <button class="aboutBtn active" data-id="1">About</button>
+        <button class="memberBtn" data-id="2">Members</button>
+        <button class="inviteBtn" data-id="3">Invite</button>
+      </div>
+    </div>
+    <div class="modal__contents">
+
+      <%# about channel tab %>
+      <ul class="about active" data-id="1">
+        <li>
+          <p>Name</p>
+          <p><%= @channel.name %></p>
+        </li>
+        <li>
+          <p>Description</p>
+          <p><%= @channel.description %></p>
+        </li>
+        <li>
+          <p>Created by</p>
+          <p>
+            <%= @all_users.find(@channel.owner_id).username %> on 
+            <%= @channel.created_at.strftime("%B %e, %Y") %>
+          </p>
+        </li>
+        <li class="membersBtn">
+          <p>Member</p>
+          <p><%= @channel.users.count %></p>
+        </li>
+        <li>
+          <p><%= @channel.private ? "Private channel" : "Public channel" %></p>
+        </li>
+        <li>
+
+          <%# #show different button depens on user %>
+          <% if @current_user.id != @channel.owner_id %>
+            <% if @channel.user_ids.include? @current_user.id %>
+              <%= link_to "Leave channel", leave_channel_path(@channel.id), method: 'patch' %>
+            <% else %>
+              <%= link_to "Join the channel", join_channel_path(@channel.id), method: 'patch' %>
+            <% end %>
+          <% else %>
+            <%= link_to "Edit", edit_channel_path(@channel.id), class: "editBtn" %>
+            <%= link_to "Delete", channel_path(@channel.id), method: 'delete' %>
+          <% end %>
+          
+        </li>
+      </ul>
+
+      <%# channel members tab %>
+      <ul class="members" data-id="2">
+        <% if @channel.user_ids.include? @current_user.id %>
+          <li class="addBtn">
+            <div class="img-container">
+              <img src="/assets/addMember-icon.jpeg" alt="">
+            </div>
+            <div class="text-container">
+              Add people
+            </div>
+          </li>
+        <% end %>
+        <% @channel.users.each do |u| %>
+          <li>
+            <div class="img-container">
+              <%= cl_image_tag u.image, alt: "user image" %>
+            </div>
+            <div class="text-container">
+              <p> <%= u.username %> </p>
+              <p> <%= u.title %> </p>
+            </div>
+            <div class="option-container">
+              <%= link_to "DM", dms_path(u.id), class: "btn" %>
+            </div>
+          </li>
+        <% end %>
+      </ul>
+
+      <%# all users tab %>
+      <ul class="invite" data-id="3">
+        <% @all_users.each do |u| %>
+          <li>
+            <div class="img-container">
+              <%= cl_image_tag  u.image, alt: "user image" %>
+            </div>
+            <div class="text-container">
+              <p> <%= u.username %> </p>
+              <p> <%= u.title %> </p>
+            </div>
+            <div class="option-container">
+              <%= link_to "Invite", invite_channel_path(@channel.id, u.id), method: 'patch', class: "btn" %>
+              <%= link_to "DM", dms_path(u.id), class: "btn" %>
+            </div>
+          </li>
+        <% end %>
+      </ul>
+
+    </div>
+  </dialog>
+</div>

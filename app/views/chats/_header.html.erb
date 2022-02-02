@@ -1,18 +1,14 @@
 <div class="header">
   <h2 class="header__title">
-    <%= link_to @channel.name, channel_path(@channel.id) %>
+    <div class="channel__infoBtn"><%= @channel.name %></div>
   </h2>
   <div class="header__member">
-    <%= link_to members_of_channel_path(@channel.id) do %>
-
-      <% 3.times do |i| %>
-        <% break unless @channel.users[i].present?%>
-        <div class="img-container">
-          <%= cl_image_tag @channel.users[i].image, alt: "user image" %>
-        </div>
-      <% end %>
-      <span class="member__count"><%= @channel.users.count %></span>
+    <% 3.times do |i| %>
+      <% break unless @channel.users[i].present?%>
+      <div class="img-container">
+        <%= cl_image_tag @channel.users[i].image, alt: "user image" %>
+      </div>
     <% end %>
-    
+    <span class="member__count"><%= @channel.users.count %></span>
   </div>
 </div>

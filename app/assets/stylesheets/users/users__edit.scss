@@ -1,0 +1,25 @@
+.users .form {
+  width: fit-content;
+  min-width: 60vw;
+  padding: 20px;
+  display: grid;
+  grid-template-columns: auto auto;
+  gap: 30px;
+
+  .left-box {
+    > div {
+      margin-bottom: 20px;
+
+      p {
+        margin-top: 5px;
+        font-size: 13px;
+        color: gray;
+      }
+    }
+  }
+
+  .right-box > .img-container {
+    width: 192px;
+    height: 192px;
+  }
+}

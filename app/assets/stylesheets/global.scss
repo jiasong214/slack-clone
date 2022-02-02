@@ -21,8 +21,8 @@ a {
   --dark-green: #007a5a;
   --main-white: #ffffff;
   --dark-white: #cfc3cf;
-  --main-gray: rgb(175, 175, 175);
-  --light-gray: rgb(233, 233, 233);
+  --main-gray: rgb(199, 199, 199);
+  --light-gray: rgb(230, 230, 230);
 }
 
 @import url("https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&display=swap");
@@ -51,33 +51,7 @@ body {
   .header__title {
     font-size: 18px;
     font-weight: 800;
-  }
-
-  .header__member a {
-    width: 90px;
-    height: 28px;
-    padding: 0 5px;
-    border: 1px solid var(--light-gray);
-    border-radius: 5px;
-
-    display: flex;
-    align-items: center;
-
-    .img-container {
-      width: 22px;
-      height: 22px;
-      border: 1px solid white;
-      margin-right: -5px;
-    }
-
-    .member__count {
-      color: black;
-      font-size: 13px;
-      color: gray;
-      font-weight: 400;
-      margin-left: auto;
-      margin-right: 5px;
-    }
+    cursor: pointer;
   }
 }
 

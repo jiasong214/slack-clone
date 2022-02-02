@@ -47,4 +47,55 @@ window.onload = () => {
   chatForm.addEventListener("submit", function(e){
     input.value = document.querySelector(".ql-editor").innerHTML;
   });
+
+
+  // channel info modal -----------------------------------------
+  // 1. modal open and close
+  const channelInfoBtn = document.querySelector(".channel__infoBtn");
+  const modal = document.querySelector(".modal-container");
+  const modalBackground = document.querySelector(".modal-background");
+  const modalCloseBtn = document.querySelector(".modal-container .closeBtn")
+
+  const toggleModal = () => {
+    if(modal.classList.contains("active")){
+      modal.classList.remove("active")
+    }else {
+      modal.classList.add("active")
+    }
+  }
+
+  channelInfoBtn.addEventListener("click", () => toggleModal());
+  modalBackground.addEventListener("click", () => toggleModal());
+  modalCloseBtn.addEventListener("click", () => toggleModal());
+
+
+  // 2. modal tab click
+  const tabBtns = document.querySelectorAll(".tabMenu > button");
+  const tabMenus = document.querySelectorAll(".modal__contents ul")
+
+  const clickTabMenu = (e, id) => {
+    tabBtns.forEach(el => el.classList.remove("active"));
+    tabMenus.forEach(el => el.classList.remove("active"));
+
+    const menuId = id ? id : e.target.dataset.id;
+    const menu = document.querySelector(`ul[data-id="${menuId}"]`);
+    const btn = document.querySelector(`button[data-id="${menuId}"]`);
+
+    menu.classList.add("active");
+    btn.classList.add("active");
+  }
+
+  const addMemberBtn = document.querySelector(".modal-container .addBtn");
+  const seeMemberBtn = document.querySelector(".modal-container .membersBtn");
+  const memberThumbnail = document.querySelector(".header__member");
+
+  tabBtns.forEach((btn) => {
+    btn.addEventListener("click", (e) => clickTabMenu(e));
+  });
+  addMemberBtn.addEventListener("click", (e) => clickTabMenu(e, 3));
+  seeMemberBtn.addEventListener("click", (e) => clickTabMenu(e, 2));
+  memberThumbnail.addEventListener("click", (e) => {
+    toggleModal();
+    clickTabMenu(e, 2);
+  });
 }

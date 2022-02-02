@@ -15,7 +15,7 @@ class ChannelsController < ApplicationController
     @channel.users << @current_user
 
     if @channel.persisted?
-      redirect_to channel_path @channel.id
+      redirect_to chats_path @channel.id
     else
       render :new
     end
@@ -33,7 +33,7 @@ class ChannelsController < ApplicationController
   def edit
     @channel = Channel.find params[:channel_id]
 
-    redirect_to channel_path channel.id unless @channel.owner_id == @current_user.id
+    redirect_to chats_path channel.id unless @channel.owner_id == @current_user.id
   end
 
   def update
@@ -42,13 +42,13 @@ class ChannelsController < ApplicationController
 
     # check if the user is matched with channel owner
     if channel.owner_id != @current_user.id
-      redirect_to channel_path channel.id
+      redirect_to chats_path channel.id
       return
     end
 
     # check if the channel update is succeed
     if channel.update channel_params
-      redirect_to channel_path channel.id
+      redirect_to chats_path channel.id
     else
       render :edit
     end
@@ -58,7 +58,7 @@ class ChannelsController < ApplicationController
     channel = Channel.find params[:channel_id]
 
     if channel.owner_id != @current_user.id
-      redirect_to channel_path channel.id
+      redirect_to chats_path channel.id
       return
     end
 
