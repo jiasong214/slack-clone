@@ -3,6 +3,16 @@
     <%= link_to @channel.name, channel_path(@channel.id) %>
   </h2>
   <div class="header__member">
-    <%= link_to "link", members_of_channel_path(@channel.id) %>
+    <%= link_to members_of_channel_path(@channel.id) do %>
+
+      <% 3.times do |i| %>
+        <% break unless @channel.users[i].present?%>
+        <div class="img-container">
+          <%= cl_image_tag @channel.users[i].image, alt: "user image" %>
+        </div>
+      <% end %>
+      <span class="member__count"><%= @channel.users.count %></span>
+    <% end %>
+    
   </div>
 </div>

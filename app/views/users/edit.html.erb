@@ -1,8 +1,8 @@
-<%= structure = capture do %>
+<%= render :layout => './shared/template' do %>
   <section class="users">
     <%= render partial: 'header', locals: {title: "Edit a profile"} %>
     
-    <%= form_with model: @current_user, class: "form", local: true do |f| %>
+    <%= form_with model: @current_user, html: { multipart: true }, class: "form", local: true do |f| %>
       <div class="left-box">
         <div>
           <%= f.label :username %>
@@ -28,5 +28,3 @@
     <% end %>
   </section>
 <% end %>
-
-<%= render 'shared/template', :structure => structure %>

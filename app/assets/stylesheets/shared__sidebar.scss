@@ -16,7 +16,7 @@
   height: 100%;
   background: var(--main-purple);
 
-  .workplace__sidebar__title {
+  .sidebar__title {
     height: 50px;
     padding: 0 16px;
     margin-bottom: 20px;
@@ -59,9 +59,16 @@
     a {
       width: 100%;
       padding: 7px 16px 7px 24px;
-      display: flex;
+      display: grid;
+      grid-template-columns: 12px auto;
       gap: 10px;
       align-items: center;
+
+      i {
+        display: flex;
+        align-items: baseline;
+        justify-content: center;
+      }
 
       .img-container {
         display: inline-block;
@@ -77,7 +84,7 @@
       }
     }
 
-    &.workplace__sidebar__channels__option {
+    &.channels__option {
       i {
         display: inline-block;
         width: 16px;
@@ -87,5 +94,10 @@
         text-indent: 4px;
       }
     }
+  }
+
+  .sidebar__DMs a {
+    display: grid;
+    grid-template-columns: 20px auto;
   }
 }

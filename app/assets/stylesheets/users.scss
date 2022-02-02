@@ -11,7 +11,6 @@
     .username {
       font-size: 18px;
       font-weight: 600;
-      text-transform: capitalize;
       text-align: center;
       margin-bottom: 5px;
     }
@@ -19,13 +18,13 @@
     .title {
       text-align: center;
       font-size: 15px;
-      margin-bottom: 20px;
+      margin-bottom: 30px;
     }
 
     .editBtn {
       display: block;
       width: fit-content;
-      margin: 0 auto 20px;
+      margin: 0 auto 30px;
 
       i {
         display: block;
@@ -69,10 +68,6 @@
           font-size: 15px;
           font-weight: 400;
 
-          &.displayName {
-            text-transform: capitalize;
-          }
-
           &.email {
             color: #1264a3;
           }
@@ -81,8 +76,13 @@
     }
 
     .option-container {
+      position: static;
+      top: 0;
+      transform: initial;
+
       a:last-child {
         background: var(--point-pink);
+        color: white;
       }
     }
   }
@@ -97,31 +97,7 @@
 
     .left-box {
       > div {
-        margin-bottom: 30px;
-
-        // label {
-        //   display: block;
-        //   margin-bottom: 10px;
-        //   font-size: 15px;
-        //   font-weight: 400;
-        // }
-
-        // input {
-        //   all: unset;
-        //   display: inline-block;
-        //   width: 100%;
-        //   padding: 8px;
-        //   border: 1px solid var(--main-gray);
-        //   border-radius: 5px;
-
-        //   &:focus {
-        //     outline: 3px solid rgb(134, 200, 255);
-        //   }
-
-        //   &[type="password"] {
-        //     margin-bottom: 5px;
-        //   }
-        // }
+        margin-bottom: 20px;
 
         p {
           margin-top: 5px;
@@ -131,42 +107,19 @@
       }
     }
 
-    .right-box {
-      // border: 1px solid red;
-
-      // label {
-      //   display: block;
-      //   margin-bottom: 10px;
-      //   font-size: 15px;
-      //   font-weight: 400;
-      // }
-
-      .img-container {
-        width: 192px;
-        height: 192px;
-      }
+    .right-box > .img-container {
+      width: 192px;
+      height: 192px;
     }
+  }
 
-    // .btn-box {
-    // a,
-    // input[type="submit"] {
-    //   all: unset;
-    //   width: fit-content;
-    //   padding: 10px 20px;
-    //   border-radius: 5px;
-    //   border: 1px solid var(--main-gray);
-
-    //   background: var(--dark-green);
-    //   font-size: 15px;
-    //   color: white;
-    //   font-weight: 400;
-    // }
-
-    option-container a {
+  .option-container {
+    position: static;
+    top: 0;
+    transform: initial;
+    a {
       background: white;
-
       color: black;
     }
-    // }
   }
 }

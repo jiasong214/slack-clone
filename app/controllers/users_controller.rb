@@ -6,7 +6,9 @@ class UsersController < ApplicationController
   end
 
   def create
-    user = User.create user_params
+    user = User.new user_params
+    user.image = "/assets/default-profile.png"
+    user.save
 
     if user
       session[:user_id] = user.id
@@ -27,6 +29,17 @@ class UsersController < ApplicationController
       redirect_to login_path
       return
     end
+
+    # raise 'hell'
+
+    if params[:user][:image].present?
+      response = Cloudinary::Uploader.upload params[:user][:image]
+      @current_user.image = response['public_id']
+    else
+      @current_user.image = "/assets/default-profile.png"
+    end
+
+    # @current_user.save
 
     if @current_user.update user_params
       redirect_to user_path @current_user.id

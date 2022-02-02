@@ -1,26 +1,32 @@
 <aside class="workplace__sidebar">
-  <h1 class="workplace__sidebar__title">
+  <h1 class="sidebar__title">
     <%= link_to "GA Immersive Students", root_path, class: "ellip-text" %>
   </h1>
-  <div class="workplace__sidebar-scrollContainer">
-    <details open class="workplace__sidebar__channels">
+  <div class="sidebar-scrollContainer">
+    <details open class="sidebar__channels">
       <summary>Channels</summary>
       <ul>
         <% @all_channels.each do |c| %>
           <li class="<%= params[:channel_id].to_i == c.id ? "active" : "" %>">
             <a href="/channels/<%= c.id %>/chats">
-              <i> <%= c.private ? "$" : "#" %> </i>
+              <i> 
+                <% if c.private? %>
+                  <img src="/assets/lock-icon.svg">
+                <% else %>
+                  #
+                <% end %>
+              </i>
               <span class="ellip-text"> <%= c.name %> </span>
             </a>
           </li>
         <% end %>
-        <li class="workplace__sidebar__channels__option">
+        <li class="channels__option">
           <a href="<%= channels_path %>">
             <i> + </i>
             <span class="ellip-text">Browse channels</span>
           </a>
         </li>
-        <li class="workplace__sidebar__channels__option">
+        <li class="channels__option">
           <a href="<%= new_channel_path %>">
             <i> + </i>
             <span class="ellip-text">Create a channel</span>
@@ -28,7 +34,7 @@
         </li>
       </ul>
     </details>
-    <details open class="workplace__sidebar__DMs">
+    <details open class="sidebar__DMs">
       <summary class="ellip-text">Direct Messages</summary>
       <ul>
         <% @all_DMs.each do |c| %>
@@ -41,7 +47,7 @@
             </a>
           </li>
         <% end %>
-        <li class="workplace__sidebar__channels__option">
+        <li class="channels__option">
           <a href="<%= channels_path %>">
             <i> + </i>
             <span class="ellip-text">Add teammates</span>

@@ -1,23 +1,15 @@
-<div id="container">
-  <%= render partial: 'shared/header' %>
-  <div class="workplace">
-    <%= render partial: 'shared/sidebar' %>
-    <main class="workplace__primaryView">
+<%= javascript_include_tag "chats" %>
 
-      <section class="dms chats">
-        <div class="header">
-          <div class="img-container">
-            <img src="<%= @recipient.image %>" alt="" />
-          </div>
-          <h2 class="header__title"><%= @recipient.username %></h2>
-        </div>
-        <%= render partial: 'list' %>
-
-
-        <%= render partial: 'form' %>
-
-      </section>
-
-    </main>
-  </div>
-</div>
+<%= render :layout => './shared/template' do %>
+  <section class="dms chats">
+    <div class="header">
+      <div class="img-container">
+        <img src="<%= @recipient.image %>" alt="" />
+      </div>
+      <h2 class="header__title"><%= @recipient.username %></h2>
+    </div>
+    
+    <%= render partial: 'list' %>
+    <%= render partial: 'form' %>
+  </section>
+<% end %>

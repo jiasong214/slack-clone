@@ -1,15 +1,18 @@
 <div class="chats__list-container">
   <ul class="chats__list">
-    <% @chats.each do |c| %>
+    <% @current_date = @chats.first.created_at.strftime("%A, %B %e") %>
+    <% @chats.each_with_index do |c, index| %>
       <li class=<%= @all_users.find(c.user_id).status %>>
         <div class="img-container">
-            <img src="<%= @all_users.find(c.user_id).image %>" alt="" class="chats__list__item__profileImg">
+            <%= cl_image_tag @all_users.find(c.user_id).image, alt: "user image" %>
         </div>
         <div class="text-container">
           <div>
-            <a href="<%= dms_path c.user_id %>">
-              <p class="username"><%= @all_users.find(c.user_id).username %></p>
-            </a>
+            <%= link_to dms_path c.user_id do %>
+              <p class="username">
+                <%= @all_users.find(c.user_id).username %>
+              </p>
+            <% end %>
             <span class="time"> <%= c.created_at %> </span>
           </div>
             <p class="msg">
@@ -20,11 +23,16 @@
               <% end %>
              </p>
         </div>
-        <div class="option-container">
-          <%= link_to "Edit", edit_dm_path(c.recipient_id, c.id) %>
-          <%= link_to 'Delete', dm_path(c.recipient_id, c.id), method: 'delete'%>
-        </div>
       </li>
+
+      <%# for date %>
+      <% if c.created_at.strftime("%A, %B %e") != @current_date || index+1 == @chats.count %>
+        <li class="date">
+          <span><%= @current_date %></span>
+        </li>
+        <% @current_date = c.created_at.strftime("%A, %B %e") %>
+      <% end %>
+
     <% end %>
   </ul>
 </div>

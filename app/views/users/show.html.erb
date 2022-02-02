@@ -1,10 +1,10 @@
-<%= structure = capture do %>
+<%= render :layout => './shared/template' do %>
   <section class="users">
     <%= render partial: 'header', locals: {title: "Profile"} %>
 
     <div class="users__profile">
       <div class="img-container">
-        <img src="<%= @current_user.image %>" alt="">
+      <%= cl_image_tag @current_user.image, alt: "user image" %>
       </div>
       <h2 class="username"><%= @current_user.username %></h2>
       <p class="title"><%= @current_user.title %></p>
@@ -33,5 +33,3 @@
     </div>
   </section>
 <% end %>
-
-<%= render 'shared/template', :structure => structure %>

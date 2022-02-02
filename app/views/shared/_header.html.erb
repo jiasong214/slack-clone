@@ -4,6 +4,6 @@
     <input type="text" placeholder="Search blabla" >
   </form>
   <a href="<%= user_path @current_user.id %>" class="img-container">
-    <%= image_tag(@current_user.image) %>
+    <%= cl_image_tag @current_user.image, alt: "user image" %>
   </a>
 </header>

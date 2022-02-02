@@ -14,7 +14,6 @@ window.onload = () => {
   // - replace to shift + enter for line change
   const quill = new Quill('#editor', {
     theme: 'snow',
-    placeholder: 'Compose an epic...',
     modules: {
       toolbar: ['bold', 'italic', 'strike', 'code-block'],
       keyboard: {

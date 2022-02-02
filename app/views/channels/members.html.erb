@@ -1,23 +1,26 @@
-<%= structure = capture do %>
+<%= render :layout => './shared/template' do %>
   <section class="channels">
     <%= render partial: 'header', locals: {title: @channel.name + "'s member"} %>
     <div class="channels__members-wrapper">
       <div class="channels__members">
         <ul>
-          <li>
-            <a href="" class="addBtn">
-              <div class="img-container">
-                <img src="/assets/addMember-icon.jpeg" alt="">
-              </div>
-              <div class="text-container">
-                Add people
-              </div>
-            </a>
-          </li>
+          <% if @channel.user_ids.include? @current_user.id %>
+          
+            <li>
+              <a href="" class="addBtn">
+                <div class="img-container">
+                  <img src="/assets/addMember-icon.jpeg" alt="">
+                </div>
+                <div class="text-container">
+                  Add people
+                </div>
+              </a>
+            </li>
+          <% end %>
           <% @channel.users.each do |u| %>
             <li>
               <div class="img-container">
-                <img src="<%= u.image %>" alt="">
+                <%= cl_image_tag u.image, alt: "user image" %>
               </div>
               <div class="text-container">
                 <p> <%= u.username %> </p>
@@ -38,7 +41,7 @@
           <% @all_users.each do |u| %>
             <li>
               <div class="img-container">
-                <img src="<%= u.image %>" alt="">
+                <%= cl_image_tag  u.image, alt: "user image" %>
               </div>
               <div class="text-container">
                 <p> <%= u.username %> </p>
@@ -55,5 +58,3 @@
     </div>
   </section>
 <% end %>
-
-<%= render 'shared/template', :structure => structure %>

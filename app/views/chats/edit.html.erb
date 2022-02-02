@@ -1,15 +1,9 @@
-<div id="container">
-  <%= render partial: 'shared/header' %>
-  <div class="workplace">
-    <%= render partial: 'shared/sidebar' %>
-    <main class="workplace__primaryView">
+<%= javascript_include_tag "chats" %>
 
-      <section class="chats">
-        <%= render partial: 'header' %>
-        <%= render partial: 'list' %>
-        <%= render partial: 'form' %>
-      </section>
-
-    </main>
-  </div>
-</div>
+<%= render :layout => './shared/template' do %>
+  <section class="chats">
+    <%= render partial: 'header' %>
+    <%= render partial: 'list' %>
+    <%= render partial: 'form' %>
+  </section>
+<% end %>

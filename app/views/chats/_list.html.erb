@@ -1,16 +1,17 @@
 <div class="chats__list-container">
   <ul class="chats__list">
-    <% @chats.each do |c| %>
+    <% @current_date = @chats.first.created_at.strftime("%A, %B %e") %>
+    <% @chats.each_with_index do |c, index| %>
       <li class=<%= @all_users.find(c.user_id).status %>>
         <div class="img-container">
-          <a href="<%= dms_path c.user_id %>">
-            <img src="<%= @all_users.find(c.user_id).image %>" alt="">
-          </a>
+          <%= link_to dms_path c.user_id do %>
+            <%= cl_image_tag @all_users.find(c.user_id).image, alt: "user image" %>
+          <% end %>
         </div>
         <div class="text-container">
           <div>
             <%= link_to @all_users.find(c.user_id).username, dms_path(c.user_id), class: "username" %>
-            <span class="time"> <%= c.created_at %> </span>
+            <span class="time"> <%= c.created_at.strftime("%H:%M %p") %> </span>
           </div>
           <p class="msg">
             <% if @all_users.find(c.user_id).status == 'active' %>
@@ -19,12 +20,30 @@
               This is message from deleted user
             <% end %>
           </p>
+          <% if c.created_at != c.updated_at %>
+            <span class="edited">(edited)</span>
+          <% end %>
         </div>
+        <% if @current_user.id == c.user_id %>
         <div class="option-container">
-          <%= link_to "Edit", edit_chat_path(c.channel_id, c.id) %>
-          <%= link_to 'Delete', chat_path(c.channel_id, c.id), method: 'delete'%>
+          <%= link_to edit_chat_path(c.channel_id, c.id) do %>
+            <%= image_tag "/assets/chat-edit-icon.svg" %>
+          <% end %>
+          <%= link_to chat_path(c.channel_id, c.id), method: 'delete' do %>
+            <%= image_tag "/assets/chat-delete-icon.svg" %>
+          <% end %>
         </div>
+        <% end %>
       </li>
+
+      <%# for date %>
+      <% if c.created_at.strftime("%A, %B %e") != @current_date || index+1 == @chats.count %>
+        <li class="date">
+          <span><%= @current_date %></span>
+        </li>
+        <% @current_date = c.created_at.strftime("%A, %B %e") %>
+      <% end %>
+
     <% end %>
   </ul>
 </div>

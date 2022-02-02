@@ -32,23 +32,19 @@
     overflow-y: scroll;
 
     .chats__list {
-      padding: 20px 0;
+      padding-bottom: 20px;
       display: flex;
       flex-direction: column-reverse;
 
       li {
         padding: 8px 20px;
         display: grid;
-        grid-template-columns: auto 1fr auto;
+        grid-template-columns: auto 1fr;
         gap: 10px;
         position: relative;
 
-        &:hover {
-          background: rgb(250, 250, 250);
-
-          .option-container {
-            display: block;
-          }
+        &:hover .option-container {
+          display: block;
         }
 
         &.disabled {
@@ -85,18 +81,66 @@
             font-size: 15px;
             line-height: 1.4;
           }
+
+          .edited {
+            display: block;
+            margin-top: 8px;
+            color: gray;
+            font-size: 13px;
+          }
         }
 
         .option-container {
           display: none;
           right: 30px;
+          top: 5px;
           border: 1px solid var(--main-gray);
           border-radius: 5px;
           padding: 5px 10px;
           background: white;
+          z-index: 50;
 
           a {
             font-size: 13px;
+            margin-right: 5px;
+            opacity: 0.8;
+
+            &:last-child {
+              margin-right: 0;
+            }
+          }
+        }
+
+        &.date {
+          padding: 36px 0 18px;
+          position: relative;
+          pointer-events: none;
+
+          &::after {
+            display: block;
+            content: "";
+            width: 100%;
+            height: 1px;
+            background: var(--light-gray);
+            position: absolute;
+            top: 50%;
+            left: 0;
+            z-index: -1;
+          }
+
+          span {
+            display: block;
+            padding: 8px 15px;
+            background: white;
+            border: 1px solid var(--light-gray);
+            border-radius: 20px;
+            box-shadow: 0 0 3px var(--light-gray);
+            font-size: 13px;
+            font-weight: 400;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
           }
         }
       }
@@ -104,7 +148,7 @@
   }
 
   .chats__form-container {
-    height: 150px;
+    height: 140px;
     padding: 0 20px;
 
     .chats__form-innerbox {
@@ -134,7 +178,7 @@
       }
 
       .chats__form {
-        padding: 10px;
+        padding: 0 10px 10px;
 
         button {
           all: unset;

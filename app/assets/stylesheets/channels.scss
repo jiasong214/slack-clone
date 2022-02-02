@@ -65,7 +65,8 @@
   }
 
   .channels__form {
-    width: 520px;
+    width: 100%;
+    max-width: 520px;
     padding: 0 20px;
 
     > p {
@@ -134,7 +135,8 @@
           }
 
           &.deleteBtn,
-          &.leaveBtn {
+          &.leaveBtn,
+          &.joinBtn {
             color: var(--point-pink);
           }
         }
