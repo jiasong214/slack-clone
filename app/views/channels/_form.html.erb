@@ -1,11 +1,3 @@
-<% if @channel.errors.any? %>
-  <ul>
-    <% @channel.errors.full_messages.each do |e| %>
-      <li><%=  %></li>
-    <% end %>
-  </ul>
-<% end %>
-
 <%= form_with model: @channel, class: "channels__form form", local: true do |f| %>
   <p>Channels are where your team communicates. They're best when organized around a topic. - #marketing, for example</p>
   <div>

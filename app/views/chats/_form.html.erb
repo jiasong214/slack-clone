@@ -1,10 +1,13 @@
 <div class="chats__form-container">
   <div class="chats__form-innerbox">
 
+    <%# using "quill" for message form %>
     <div id="editor"></div>
 
     <%= form_with model: @chat, class: "chats__form", local: true do |f| %>
+      <%# hidden input that will actually send a value %>
       <%= f.hidden_field :msg, class: "chats__form__input" %>
+      
       <button type="submit">
         <%= image_tag("/assets/send-icon.png") %>
       </button>

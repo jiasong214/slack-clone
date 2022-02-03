@@ -15,7 +15,7 @@
                 <%= @all_users.find(c.user_id).username %>
               </p>
             <% end %>
-            <span class="time"> <%= c.created_at %> </span>
+            <span class="time"> <%= c.created_at.strftime("%H:%M %p") %> </span>
           </div>
             <p class="msg">
               <% if @all_users.find(c.user_id).status == 'active' %>

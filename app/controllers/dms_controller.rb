@@ -38,6 +38,7 @@ class DmsController < ApplicationController
     redirect_to dms_path @recipient.id
   end
 
+
   def update
     chat = Chat.find params[:id]
 
@@ -53,6 +54,7 @@ class DmsController < ApplicationController
     end
   end
 
+
   def destroy
     recipient = User.find params[:user_id]
     chat = Chat.find params[:id]
@@ -67,6 +69,7 @@ class DmsController < ApplicationController
     redirect_to dms_path recipient.id
   end
 
+  
   def chat_params
     params.require(:chat).permit(:msg)
   end

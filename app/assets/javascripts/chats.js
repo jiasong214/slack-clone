@@ -1,6 +1,6 @@
 window.onload = () => {
   // chats list functions -----------------------------------------
-  // scroll to bottom to show the recent msgs
+  // scroll to bottom to show the recent msgs first
   setTimeout(() => {
     const chatScrollContainer = document.querySelector(".chats__list-container");
     const chatList = document.querySelector(".chats__list");
@@ -14,8 +14,8 @@ window.onload = () => {
   const input = document.querySelector(".chats__form__input");
 
   // text editor setting
-  // - change enter event to submit event
-  // - replace to shift + enter for line change
+  // - change new line event(enter) to submit event
+  // - change to shift + enter for line change
   const quill = new Quill('#editor', {
     theme: 'snow',
     modules: {
@@ -44,12 +44,11 @@ window.onload = () => {
 
   quill.focus();
 
-  // fill the text with input value when a user click edit chat
+  // fill the editor with the input value when a user clicks edit chat
   document.querySelector(".ql-editor").innerHTML = input.value;
 
-  // send a text contents as a value when form is submitted
+  // send editor contents as a value when form is submitted
   chatForm.addEventListener("submit", function(e){
-    // const actualText = document.querySelector(".ql-editor > p").innerHTML;
     input.value = document.querySelector(".ql-editor").innerHTML;
   });
 
@@ -59,13 +58,13 @@ window.onload = () => {
   const channelInfoBtn = document.querySelector(".channel__infoBtn");
   const modal = document.querySelector(".modal-container");
   const modalBackground = document.querySelector(".modal-background");
-  const modalCloseBtn = document.querySelector(".modal-container .closeBtn")
+  const modalCloseBtn = document.querySelector(".modal-container .closeBtn");
 
   const toggleModal = () => {
     if(modal.classList.contains("active")){
-      modal.classList.remove("active")
+      modal.classList.remove("active");
     }else {
-      modal.classList.add("active")
+      modal.classList.add("active");
     }
   }
 
@@ -79,9 +78,11 @@ window.onload = () => {
   const tabMenus = document.querySelectorAll(".modal__contents ul")
 
   const clickTabMenu = (e, id) => {
+    // remove all active UI
     tabBtns.forEach(el => el.classList.remove("active"));
     tabMenus.forEach(el => el.classList.remove("active"));
 
+    // find current tab id, and get elements with it
     const menuId = id ? id : e.target.dataset.id;
     const menu = document.querySelector(`ul[data-id="${menuId}"]`);
     const btn = document.querySelector(`button[data-id="${menuId}"]`);

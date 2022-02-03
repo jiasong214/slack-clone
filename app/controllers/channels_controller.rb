@@ -1,17 +1,17 @@
 class ChannelsController < ApplicationController
   before_action :check_login, :fetch_user_channels, :fetch_user_DMs
-  after_action :fetch_user_channels
 
   def new
     @channel = Channel.new
   end
+
 
   def create
     @channel = Channel.new channel_params
     @channel.owner_id = @current_user.id
     @channel.save
 
-    # channel's owner should be joinned in the channel
+    # channel's owner should be a member of the channel
     @channel.users << @current_user
 
     if @channel.persisted?
@@ -21,38 +21,38 @@ class ChannelsController < ApplicationController
     end
   end
 
+
   def index
-    @channels = Channel.where("private=false")
+    # it displays only the public channels
+    @channels = Channel.where(private: false)
   end
 
-  def show
-    @channel = Channel.find params[:channel_id]
-    @all_users = User.all
-  end
 
   def edit
     @channel = Channel.find params[:channel_id]
 
+    # allow edit page only if the current user is matched with the channel owner
     redirect_to chats_path channel.id unless @channel.owner_id == @current_user.id
   end
 
+
   def update
-    # get the channel a user wants to update
     channel = Channel.find params[:channel_id]
 
-    # check if the user is matched with channel owner
+    # only channel owner can edit channel info
     if channel.owner_id != @current_user.id
       redirect_to chats_path channel.id
       return
     end
 
-    # check if the channel update is succeed
+    # check if the channel update succeeds
     if channel.update channel_params
       redirect_to chats_path channel.id
     else
       render :edit
     end
   end
+
 
   def destroy
     channel = Channel.find params[:channel_id]
@@ -64,24 +64,21 @@ class ChannelsController < ApplicationController
 
     Channel.destroy channel.id
 
-    redirect_to chats_path(@current_user.channels.first)
+    redirect_to root_path
   end
 
-  def members
-    @channel = Channel.find params[:channel_id]
-    @all_users = User.all
-  end
-
+  
   def join
     @channel = Channel.find params[:channel_id]
 
-    # user can join the table only when they haven't
+    # users can join the channel only if they haven't already
     unless @channel.users.include?(@current_user)
       @channel.users << @current_user
     end
 
     redirect_to chats_path(@channel.id)
   end
+
 
   def leave
     @channel = Channel.find params[:channel_id]
@@ -93,19 +90,20 @@ class ChannelsController < ApplicationController
     redirect_to chats_path(@current_user.channels.first)
   end
 
+
   def invite
-    # 1. find a channel
     @channel = Channel.find params[:channel_id]
 
-    # 2. find a user
+    # find a user
     user = User.find params[:user_id]
 
-    ## 3. chech if user is already joined
+    # chech if the user has already joined
     unless @channel.users.include?(user)
       @channel.users << user
     end
   end
 
+  
   def channel_params
     params.require(:channel).permit(:name, :description, :private)
   end

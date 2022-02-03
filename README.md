@@ -1,24 +1,32 @@
-# README
+# Slack-clone
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+Slack clone built with Ruby on Rails.
 
-Things you may want to cover:
+**[Click here for demo](https://jia-slack-clone.herokuapp.com/)**
 
-* Ruby version
+## Features
 
-* System dependencies
+- CRUD for user, channel, and chat
+- Join, invite, and leave channels
+- Private/public channel options
+- DM with other users
 
-* Configuration
+## Tech
 
-* Database creation
+- Ruby on Rails
+- Sass
+- Javascript
 
-* Database initialization
+## Wishlist
 
-* How to run the test suite
+- [ ] Prevent refresh when users write a chat.
+- [ ] Build a real-time server.
+- [ ] Push notification functionality.
 
-* Services (job queues, cache servers, search engines, etc.)
+## Screenshot
 
-* Deployment instructions
-
-* ...
+![Screenshot](screenshot1.png)
+![Screenshot](screenshot2.png)
+![Screenshot](screenshot3.png)
+![Screenshot](screenshot4.png)
+![Screenshot](screenshot5.png)

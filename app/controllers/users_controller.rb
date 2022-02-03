@@ -5,8 +5,10 @@ class UsersController < ApplicationController
     @user = User.new
   end
 
+
   def create
     @user = User.new user_params
+    # default image
     @user.image = "/assets/default-profile.png"
     @user.save
 
@@ -18,19 +20,24 @@ class UsersController < ApplicationController
     end
   end
 
+
   def index
     @users = User.all
   end
+
 
   def show
     @user = User.find params[:id]
   end
 
+
   def edit
     @user = User.find params[:id]
   end
 
+
   def update
+    # check if param matches current user id
     if params[:id].to_i != @current_user.id
       redirect_to login_path
       return
@@ -42,8 +49,6 @@ class UsersController < ApplicationController
     else
       @current_user.image = "/assets/default-profile.png"
     end
-
-    # @current_user.save
 
     if @current_user.update user_params
       redirect_to user_path @current_user.id
@@ -59,6 +64,8 @@ class UsersController < ApplicationController
       return
     end
 
+    # make the user status "disabled" instead of destroying the data
+    # if the user is deleted, their chats will cause errors
     update = @current_user.update(
       status: "disabled"
     )
@@ -70,6 +77,7 @@ class UsersController < ApplicationController
     end
   end
 
+  
   def user_params
     params.require(:user).permit(:username, :password, :email, :title)
   end

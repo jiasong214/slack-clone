@@ -1,7 +1,10 @@
 <div class="chats__list-container">
   <ul class="chats__list">
     <% if @chats.count != 0 %>
+
+      <%# for date separator %>
       <% @current_date = @chats.first.created_at.strftime("%A, %B %e") %>
+
       <% @chats.each_with_index do |c, index| %>
         <li class=<%= @all_users.find(c.user_id).status %>>
           <div class="img-container">
@@ -37,7 +40,7 @@
           <% end %>
         </li>
 
-        <%# for date %>
+        <%# date separator %>
         <% if c.created_at.strftime("%A, %B %e") != @current_date || index+1 == @chats.count %>
           <li class="date">
             <span><%= @current_date %></span>
