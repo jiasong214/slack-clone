@@ -45,6 +45,7 @@ window.onload = () => {
 
   // send a text contents as a value when form is submitted
   chatForm.addEventListener("submit", function(e){
+    // const actualText = document.querySelector(".ql-editor > p").innerHTML;
     input.value = document.querySelector(".ql-editor").innerHTML;
   });
 

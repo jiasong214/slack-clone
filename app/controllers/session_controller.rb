@@ -7,7 +7,7 @@ class SessionController < ApplicationController
     user = User.find_by email: params[:email]
 
     # 1. check if its deleted user
-    if user.status == 'disabled'
+    if user.present? && user.status == 'disabled'
       flash[:error] = "Deleted user"
       redirect_to login_path
       return
@@ -15,13 +15,10 @@ class SessionController < ApplicationController
 
     # 2. check if email and password is matched
     if user.present? && user.authenticate(params[:password])
-      # save user id in session
       session[:user_id] = user.id
-
       redirect_to root_path
     else
       flash[:error] = "Invalid email of password"
-
       redirect_to login_path
     end
   end

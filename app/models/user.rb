@@ -10,8 +10,5 @@ class User < ApplicationRecord
   validates_uniqueness_of :email, scope: :email
 
   validates :username, presence: true
-  validates_uniqueness_of :username, scope: :username
-
-  # validates :password, presence: true
-
+  # validates_uniqueness_of :username, scope: :username
 end

@@ -37,6 +37,13 @@
     margin-bottom: 30px;
     width: 90vw;
     max-width: 420px;
+    position: relative;
+
+    .error-msg {
+      top: -30px;
+      left: 50%;
+      transform: translateX(-50%);
+    }
 
     input {
       padding: 12px;

@@ -7,7 +7,7 @@ class ChatsController < ApplicationController
     redirect_to chats_path channel.id
   end
 
-  def create    
+  def create
     chat = Chat.new chat_params
     chat.user_id = @current_user.id
     chat.channel_id = params[:channel_id]

@@ -11,12 +11,12 @@
   <div class="signin__form-container">
 
     <% if flash[:error] %>
-      <%= flash[:error] %>
+      <p class="error-msg"><%= flash[:error] %></p>
     <% end %>
 
     <%= form_with url: login_path, class: "form", local: true do |f| %>
-      <%= f.text_field :email, placeholder: "Email address" %>
-      <%= f.password_field :password, placeholder: "Password" %>
+      <%= f.text_field :email, placeholder: "Email address", required: true %>
+      <%= f.password_field :password, placeholder: "Password", required: true %>
       <%= f.submit "Login", class: "btn" %>
     <% end %>
     
