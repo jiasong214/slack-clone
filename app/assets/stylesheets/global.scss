@@ -49,7 +49,7 @@ body {
   align-items: center;
 
   .header__title {
-    font-size: 18px;
+    font-size: 1.8rem;
     font-weight: 800;
     cursor: pointer;
   }
@@ -74,7 +74,7 @@ body {
   border-radius: 5px;
   border: 1px solid var(--main-gray);
   color: white;
-  font-size: 15px;
+  font-size: 1.5rem;
   font-weight: 400;
   text-align: center;
   cursor: pointer;
@@ -84,7 +84,7 @@ body {
   label {
     display: block;
     margin-bottom: 10px;
-    font-size: 15px;
+    font-size: 1.5rem;
     font-weight: 400;
   }
 
@@ -96,6 +96,7 @@ body {
     padding: 8px;
     border: 1px solid var(--main-gray);
     border-radius: 5px;
+    font-size: 1.5rem;
 
     &:focus {
       outline: 3px solid rgb(134, 200, 255);
@@ -129,7 +130,7 @@ li:hover {
 }
 
 .error-msg {
-  font-size: 15px;
+  font-size: 1.5rem;
   font-weight: 600;
   color: rgb(228, 0, 0);
 

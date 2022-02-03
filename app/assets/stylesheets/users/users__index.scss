@@ -1,3 +1,8 @@
+.uesrs__list-container {
+  height: calc(100vh - 50px - 38px);
+  overflow: scroll;
+}
+
 .users__list {
   padding: 20px;
 
@@ -19,13 +24,13 @@
 
       .text-container {
         .username {
-          font-size: 15px;
+          font-size: 1.5rem;
           font-weight: 600;
           margin-bottom: 3px;
         }
 
         .title {
-          font-size: 15px;
+          font-size: 1.5rem;
           color: gray;
         }
       }

@@ -1,8 +1,12 @@
 window.onload = () => {
   // chats list functions -----------------------------------------
-  const chatScrollContainer = document.querySelector(".chats__list-container");
-  const chatList = document.querySelector(".chats__list");
-  chatScrollContainer.scrollTo(0, chatList.offsetHeight);
+  // scroll to bottom to show the recent msgs
+  setTimeout(() => {
+    const chatScrollContainer = document.querySelector(".chats__list-container");
+    const chatList = document.querySelector(".chats__list");
+
+    chatScrollContainer.scrollTo(0, chatList.offsetHeight);
+  },0)
 
 
   // chats form functions -----------------------------------------
@@ -15,15 +19,15 @@ window.onload = () => {
   const quill = new Quill('#editor', {
     theme: 'snow',
     modules: {
-      toolbar: ['bold', 'italic', 'strike', 'code-block'],
+      toolbar: ['bold', 'italic', 'strike', 'code-block',{ 'list': 'ordered'}, { 'list': 'bullet' }],
       keyboard: {
         bindings: {
           shift_enter: {
             key: 13,
             shiftKey: true,
             handler: (range, ctx) => {
-              // console.log(range, ctx);
-              editor.insertText(range.index, '\n');
+              console.log(range, ctx);
+              quill.insertText(range.index, '\n');
             }
           },
           enter: {
@@ -87,7 +91,7 @@ window.onload = () => {
   }
 
   const addMemberBtn = document.querySelector(".modal-container .addBtn");
-  const seeMemberBtn = document.querySelector(".modal-container .membersBtn");
+  const seeMemberBtn = document.querySelector(".modal__contents .membersBtn");
   const memberThumbnail = document.querySelector(".header__member");
 
   tabBtns.forEach((btn) => {

@@ -1,11 +1,11 @@
 class ChatsController < ApplicationController
   before_action :check_login, :fetch_user_channels, :fetch_user_DMs
 
-  def redirect
-    channel = @current_user.channels.first
+  # def redirect
+  #   channel = @current_user.channels.first
 
-    redirect_to chats_path channel.id
-  end
+  #   redirect_to chats_path channel.id
+  # end
 
   def create
     chat = Chat.new chat_params

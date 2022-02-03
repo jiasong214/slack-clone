@@ -9,7 +9,7 @@
     padding: 10px;
     border: 1px solid var(--main-gray);
     border-radius: 5px;
-    font-size: 15px;
+    font-size: 1.5rem;
 
     &:focus {
       outline: 3px solid rgb(134, 200, 255);
@@ -41,12 +41,12 @@
       }
 
       .title {
-        font-size: 15px;
+        font-size: 1.5rem;
         font-weight: 600;
       }
 
       span {
-        font-size: 13px;
+        font-size: 1.3rem;
         color: gray;
       }
     }

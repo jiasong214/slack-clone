@@ -1,5 +1,5 @@
 .chats__form-container {
-  height: 140px;
+  height: fit-content;
   padding: 0 20px;
 
   .chats__form-innerbox {
@@ -25,7 +25,7 @@
 
     .ql-container {
       border: none;
-      font-size: 15px;
+      font-size: 1.5rem;
     }
 
     .chats__form {
@@ -50,5 +50,12 @@
         }
       }
     }
+  }
+
+  > p {
+    margin: 5px 0;
+    font-size: 1.2rem;
+    color: gray;
+    text-align: right;
   }
 }

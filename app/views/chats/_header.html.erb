@@ -10,10 +10,11 @@
   <div class="header__member">
     <% 3.times do |i| %>
       <% break unless @channel.users[i].present?%>
+
       <div class="img-container">
         <%= cl_image_tag @channel.users[i].image, alt: "user image" %>
       </div>
     <% end %>
-    <span class="member__count"><%= @channel.users.count %></span>
+    <span class="member__count"><%= @channel.users.where(status: "active").count %></span>
   </div>
 </div>

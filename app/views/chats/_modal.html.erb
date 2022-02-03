@@ -38,7 +38,7 @@
         </li>
         <li class="membersBtn">
           <p>Member</p>
-          <p><%= @channel.users.count %></p>
+          <p><%= @channel.users.where(status: "active").count %></p>
         </li>
         <li>
           <p><%= @channel.private ? "Private channel" : "Public channel" %></p>
@@ -73,7 +73,7 @@
           </li>
         <% end %>
         <% @channel.users.each do |u| %>
-          <% unless u.status != "disabled" %>
+          <% if u.status != "disabled" %>
             <li>
               <%= link_to user_path(u.id) do %>
                 <div class="img-container">
@@ -95,7 +95,8 @@
       <%# all users tab %>
       <ul class="invite" data-id="3">
         <% @all_users.each do |u| %>
-          <% unless @channel.user_ids.include? u.id || u.status != "disabled" %>
+          <% unless @channel.user_ids.include? u.id %>
+            <% unless u.status == "disabled" %>
             <li>
               <%= link_to user_path(u.id) do %>
                 <div class="img-container">
@@ -111,6 +112,7 @@
                 <%= link_to "DM", dms_path(u.id), class: "btn" %>
               </div>
             </li>
+            <% end %>
           <% end %>
         <% end %>
       </ul>
