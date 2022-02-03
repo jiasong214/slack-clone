@@ -58,4 +58,11 @@
     color: gray;
     text-align: right;
   }
+
+  ol li,
+  ul li {
+    &:hover {
+      background: none;
+    }
+  }
 }
