@@ -38,7 +38,7 @@
             <li class="<%= params[:user_id].to_i == c.id ? "active" : "" %>">
               <a href="<%= dms_path c.id %>">
                 <i class="img-container">
-                  <img src="<%= c.image %>" alt="" />
+                  <%= cl_image_tag c.image, alt: "user image" %>
                 </i>
                 <span class="ellip-text"> <%= c.username %> </span>
               </a>
