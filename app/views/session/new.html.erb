@@ -19,11 +19,18 @@
       <%= f.password_field :password, placeholder: "Password", required: true %>
       <%= f.submit "Login", class: "btn" %>
     <% end %>
-    
   </div>
 
   <div class="signin__new">
     <p>New user?</p>
     <%= link_to "Create account", new_user_path %>
+  </div>
+
+  <div class="signin__guest">
+    <%= form_with url: login_path, local: true do |f| %>
+      <input type="hidden" name="email" value="jiasong214@gmail.com">
+      <input type="hidden" name="password" value="chicken">
+      <%= f.submit "Login with Jia's account" %>
+    <% end %>
   </div>
 </section>
