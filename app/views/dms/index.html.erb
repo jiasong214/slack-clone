@@ -5,7 +5,7 @@
     <div class="header">
       <%= link_to user_path(@recipient.id) do %>
         <div class="img-container">
-          <img src="<%= @recipient.image %>" alt="" />
+          <%= cl_image_tag @recipient.image, alt: "user image" %>
         </div>
         <h2 class="header__title"><%= @recipient.username %></h2>
         <img class="arrow" src="/assets/arrow-icon.png" alt="">
